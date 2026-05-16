@@ -5,7 +5,6 @@ public class CardPlayer : MonoBehaviour
 {
     public static CardPlayer Instance { get; private set; }
     [SerializeField] private LifeValue playerLifeValue;
-    [SerializeField] private int initialHealth = 100;
 
     private List<Card> hand = new List<Card>();
     private List<Card> playedCardsThisTurnList = new List<Card>();
@@ -14,6 +13,8 @@ public class CardPlayer : MonoBehaviour
     [SerializeField] private Transform handPosition;
     [SerializeField] private GameObject cardUiPrefab;
     [SerializeField] private GameObject card3dPrefab;
+
+    public int GetHandCount() => hand.Count;
 
     private void Awake()
     {
@@ -24,11 +25,6 @@ public class CardPlayer : MonoBehaviour
         }
 
         Instance = this;
-
-        if (playerLifeValue != null)
-        {
-            playerLifeValue.Initialize(initialHealth);
-        }
     }
 
     public void TakeDamage(int amount)
@@ -59,6 +55,11 @@ public class CardPlayer : MonoBehaviour
     {
         for (int i = 0; i < drawAmount; i++)
         {
+            if (Deck.Instance.DrawStack.Count == 0)
+            {
+                Deck.Instance.RefillDeckFromDiscard();
+            }
+
             if (Deck.Instance.DrawStack.Count > 0)
             {
                 Card newCard = Deck.Instance.DrawStack.Pop();
@@ -67,7 +68,7 @@ public class CardPlayer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Deck is empty");
+                Debug.Log("Deck is empty and no cards to refill");
                 break;
             }
         }
@@ -80,6 +81,10 @@ public class CardPlayer : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        foreach (var card in hand)
+        {
+            Deck.Instance.DiscardCard(card);
+        }
         hand.Clear();
     }
 
@@ -89,14 +94,14 @@ public class CardPlayer : MonoBehaviour
         {
             hand.Remove(card);
             Destroy(display.gameObject);
-            
+
             Vector3 pos = CardPlacement.Instance.GetPlayerPlayPosition(cardsPlayedThisTurn);
             GameObject card3D = Instantiate(card3dPrefab, pos, Quaternion.identity);
-            
+
             playedCardsThisTurnList.Add(card);
             played3DCards.Add(card3D);
             cardsPlayedThisTurn++;
-            
+
             Debug.Log($"Card {card.data.CardName} placed on board.");
         }
         else if (cardsPlayedThisTurn >= 3)
@@ -111,7 +116,9 @@ public class CardPlayer : MonoBehaviour
         foreach (var card in playedCardsThisTurnList)
         {
             card.Play();
+            Deck.Instance.DiscardCard(card);
         }
+
         playedCardsThisTurnList.Clear();
         cardsPlayedThisTurn = 0;
 
@@ -119,6 +126,7 @@ public class CardPlayer : MonoBehaviour
         {
             Destroy(obj);
         }
+
         played3DCards.Clear();
     }
 
@@ -132,6 +140,7 @@ public class CardPlayer : MonoBehaviour
                 count++;
             }
         }
+
         return count;
     }
 

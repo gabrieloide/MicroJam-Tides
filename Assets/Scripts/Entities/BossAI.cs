@@ -10,6 +10,7 @@ public enum EnemyIntent
 public class BossAI : MonoBehaviour
 {
     public static BossAI Instance { get; private set; }
+    public static System.Action<EnemyIntent> OnIntentDecided;
     
     [Header("Current State")]
     [SerializeField] private EnemyIntent currentIntent;
@@ -87,6 +88,7 @@ public class BossAI : MonoBehaviour
             heavyAttackCooldown = isEnraged ? 1 : 2;
         }
         
+        OnIntentDecided?.Invoke(intent);
         Debug.Log($"[BossAI] Phase: {(isEnraged ? "ENRAGED" : "Normal")} | Decision: {currentIntent}");
     }
 

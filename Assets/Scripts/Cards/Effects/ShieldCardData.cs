@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewShieldCard", menuName = "Cards/Shield")]
 public class ShieldCardData : CardData
 {
-    public int bonusShield = 0; // 0 for Base, 5 for Heavy
+    public int bonusShield = 0;
     
     public override void ExecuteEffect(Card cardInstance)
     {

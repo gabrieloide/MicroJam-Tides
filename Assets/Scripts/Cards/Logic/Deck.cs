@@ -9,6 +9,8 @@ public class Deck : MonoBehaviour
     private const int STARTING_HAND_SIZE = 5;
     private List<Card> _actualDeck = new List<Card>();
     public Stack<Card> DrawStack = new Stack<Card>();
+    private List<Card> _discardPile = new List<Card>();
+
     public static Action<int> OnInitializeDeck;
     public static Deck Instance { get; private set; }
 
@@ -52,5 +54,21 @@ public class Deck : MonoBehaviour
         }
 
         Debug.Log("Deck shuffled.");
+    }
+
+    public void DiscardCard(Card card)
+    {
+        _discardPile.Add(card);
+    }
+
+    public void RefillDeckFromDiscard()
+    {
+        if (_discardPile.Count == 0) return;
+
+        Debug.Log("Refilling deck from discard pile...");
+        _actualDeck.Clear();
+        _actualDeck.AddRange(_discardPile);
+        _discardPile.Clear();
+        ShuffleDeck();
     }
 }

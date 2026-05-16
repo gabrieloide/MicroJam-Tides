@@ -11,7 +11,7 @@ public abstract class CardData : ScriptableObject, ICardEffect
 {
     public string CardName;
     public int Cost;
-    public int Amount; // Amount of this card in the deck
+    public int Amount;
     public Sprite Sprite;
 
     public abstract void ExecuteEffect(Card cardInstance);

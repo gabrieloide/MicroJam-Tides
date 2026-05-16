@@ -4,7 +4,7 @@ public class CardPlacement : MonoBehaviour
 {
     public static CardPlacement Instance { get; private set; }
     [SerializeField] private Transform _playerPlayPosition;
-    [SerializeField] private float spacing = 1.5f; // Spacing between cards
+    [SerializeField] private float spacing = 1.5f;
 
     private void Awake()
     {
