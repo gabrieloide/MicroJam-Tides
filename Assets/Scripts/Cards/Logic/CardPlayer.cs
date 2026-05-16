@@ -10,7 +10,8 @@ public class CardPlayer : MonoBehaviour
     private List<Card> hand = new List<Card>();
     private int cardsPlayedThisTurn;
     [SerializeField] private Transform handPosition;
-    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private GameObject cardUiPrefab;
+    [SerializeField] private GameObject card3dPrefab;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class CardPlayer : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
         if (playerLifeValue != null)
@@ -76,6 +78,7 @@ public class CardPlayer : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
         hand.Clear();
     }
 
@@ -86,13 +89,14 @@ public class CardPlayer : MonoBehaviour
             card.Play();
             hand.Remove(card);
             Destroy(display.gameObject);
+            Instantiate(card3dPrefab);
             Debug.Log($"Card {card.data.CardName} played and removed from hand.");
         }
     }
 
     private void CreateCardInUi(Sprite sprite, Card card)
     {
-        var c = Instantiate(cardPrefab, handPosition);
+        var c = Instantiate(cardUiPrefab, handPosition);
         c.transform.SetParent(handPosition);
         c.transform.localScale = Vector3.one;
         c.transform.localPosition = Vector3.zero;
