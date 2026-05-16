@@ -8,7 +8,7 @@ public class SacrificeCardData : CardData
 
     public override void ExecuteEffect(Card cardInstance)
     {
-        Debug.Log("Sacrificio: +Stats por -Límite de Mano.");
+        Debug.Log("Sacrifice: +Stats for -Hand Limit.");
         StatManager.Instance.ModifyStrength(strengthGain);
         StatManager.Instance.ModifyShieldStat(shieldGain);
         StatManager.Instance.ModifyMaxHandSize(-Cost);

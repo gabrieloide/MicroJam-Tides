@@ -29,4 +29,6 @@ public class Boss : MonoBehaviour
             OnBossDeath?.Invoke();
         }
     }
+
+    public int GetHealth() => bossLifeValue != null ? bossLifeValue.Value : 0;
 }

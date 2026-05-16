@@ -7,7 +7,7 @@ public class DrawCardData : CardData
 
     public override void ExecuteEffect(Card cardInstance)
     {
-        Debug.Log("Robando cartas adicionales...");
+        Debug.Log("Drawing extra cards...");
         CardPlayer.Instance.DrawCards(drawAmount);
         StatManager.Instance.ModifyMaxHandSize(-Cost);
     }

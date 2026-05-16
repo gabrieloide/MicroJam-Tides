@@ -7,7 +7,7 @@ public class CycleCardData : CardData
 
     public override void ExecuteEffect(Card cardInstance)
     {
-        Debug.Log("Ciclando mano...");
+        Debug.Log("Cycling hand...");
         CardPlayer.Instance.DiscardHand();
         CardPlayer.Instance.DrawCards(cardsToDraw);
         StatManager.Instance.ModifyMaxHandSize(-Cost);

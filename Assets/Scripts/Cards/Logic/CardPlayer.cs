@@ -8,6 +8,8 @@ public class CardPlayer : MonoBehaviour
     [SerializeField] private int initialHealth = 100;
 
     private List<Card> hand = new List<Card>();
+    private List<Card> playedCardsThisTurnList = new List<Card>();
+    private List<GameObject> played3DCards = new List<GameObject>();
     private int cardsPlayedThisTurn;
     [SerializeField] private Transform handPosition;
     [SerializeField] private GameObject cardUiPrefab;
@@ -73,7 +75,6 @@ public class CardPlayer : MonoBehaviour
 
     public void DiscardHand()
     {
-        // Logic to clear UI and list
         foreach (Transform child in handPosition)
         {
             Destroy(child.gameObject);
@@ -84,14 +85,54 @@ public class CardPlayer : MonoBehaviour
 
     public void PlayCard(CardDisplay display, Card card)
     {
-        if (hand.Contains(card))
+        if (hand.Contains(card) && cardsPlayedThisTurn < 3)
         {
-            card.Play();
             hand.Remove(card);
             Destroy(display.gameObject);
-            Instantiate(card3dPrefab);
-            Debug.Log($"Card {card.data.CardName} played and removed from hand.");
+            
+            Vector3 pos = CardPlacement.Instance.GetPlayerPlayPosition(cardsPlayedThisTurn);
+            GameObject card3D = Instantiate(card3dPrefab, pos, Quaternion.identity);
+            
+            playedCardsThisTurnList.Add(card);
+            played3DCards.Add(card3D);
+            cardsPlayedThisTurn++;
+            
+            Debug.Log($"Card {card.data.CardName} placed on board.");
         }
+        else if (cardsPlayedThisTurn >= 3)
+        {
+            Debug.Log("Limit of 3 cards per turn reached.");
+        }
+    }
+
+    public void ResolvePlayedCards()
+    {
+        Debug.Log("Resolving played cards...");
+        foreach (var card in playedCardsThisTurnList)
+        {
+            card.Play();
+        }
+        playedCardsThisTurnList.Clear();
+        cardsPlayedThisTurn = 0;
+
+        foreach (var obj in played3DCards)
+        {
+            Destroy(obj);
+        }
+        played3DCards.Clear();
+    }
+
+    public int GetShieldCardsCount()
+    {
+        int count = 0;
+        foreach (var card in hand)
+        {
+            if (card.data is ShieldCardData)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     private void CreateCardInUi(Sprite sprite, Card card)
