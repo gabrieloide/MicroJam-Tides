@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class Deck : MonoBehaviour
 {
-    [Header("Deck Info")] [SerializeField] private List<CardData> _cardTypes = new List<CardData>();
+    [Header("Deck Info")] [SerializeField] public List<CardData> _cardTypes = new List<CardData>();
     private const int STARTING_HAND_SIZE = 5;
     private List<Card> _actualDeck = new List<Card>();
     public Stack<Card> DrawStack = new Stack<Card>();

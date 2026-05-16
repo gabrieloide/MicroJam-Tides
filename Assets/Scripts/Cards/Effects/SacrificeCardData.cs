@@ -1,0 +1,17 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "NewSacrificeCard", menuName = "Cards/Utility/Sacrifice")]
+public class SacrificeCardData : CardData
+{
+    public int strengthGain = 2;
+    public int shieldGain = 2;
+    public int handSizeLoss = 1;
+
+    public override void ExecuteEffect(Card cardInstance)
+    {
+        Debug.Log("Sacrificio: +Stats por -Límite de Mano.");
+        StatManager.Instance.ModifyStrength(strengthGain);
+        StatManager.Instance.ModifyShieldStat(shieldGain);
+        StatManager.Instance.ModifyMaxHandSize(-handSizeLoss);
+    }
+}

@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aba5832543611c40a7b8e1deee46717, type: 3}
-  m_Name: Normal_Attack
+  m_Script: {fileID: 11500000, guid: 493c329e81844b044bff7813008d1f69, type: 3}
+  m_Name: NewNormalAttackCard
   m_EditorClassIdentifier: 
-  cardName: 
-  cost: 1
-  type: 0
-  amount: 4
+  CardName: 
+  Cost: 1
+  Amount: 1
+  Sprite: {fileID: 0}
+  bonusDamage: 0

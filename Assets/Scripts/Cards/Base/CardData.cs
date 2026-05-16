@@ -7,14 +7,14 @@ public enum CardType
     Utility
 }
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Card")]
-public class CardData : ScriptableObject
+public abstract class CardData : ScriptableObject, ICardEffect
 {
     public string CardName;
     public int Cost;
-    public CardType Type;
-    public int Amount;
+    public int Amount; // Cantidad de esta carta en el mazo
     public Sprite Sprite;
+
+    public abstract void ExecuteEffect(Card cardInstance);
 }
 
 [System.Serializable]
@@ -26,15 +26,11 @@ public class Card
     public Card(CardData data)
     {
         this.data = data;
-        currentStat = data.Amount;
     }
 
     public void Play()
     {
         Debug.Log("Playing card: " + data.CardName);
-        if (StatManager.Instance != null)
-        {
-            StatManager.Instance.DecreaseStat();
-        }
+        data.ExecuteEffect(this);
     }
 }

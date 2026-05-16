@@ -3,12 +3,23 @@ using System.Collections.Generic;
 
 public class CardPlayer : MonoBehaviour
 {
+    public static CardPlayer Instance { get; private set; }
     private LifeValue playerLifeValue;
 
-    private List<Card> hand;
+    private List<Card> hand = new List<Card>();
     private int cardsPlayedThisTurn;
     [SerializeField] private Transform handPosition;
     [SerializeField] private GameObject cardPrefab;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void OnEnable()
     {
@@ -20,20 +31,32 @@ public class CardPlayer : MonoBehaviour
         Deck.OnInitializeDeck -= DrawCards;
     }
 
-    private void DrawCards(int drawAmount)
+    public void DrawCards(int drawAmount)
     {
-        Debug.Log("Drawing initial cards.");
         for (int i = 0; i < drawAmount; i++)
         {
-            if (Deck.Instance.DrawStack.Count > 0) hand.Add(Deck.Instance.DrawStack.Pop());
+            if (Deck.Instance.DrawStack.Count > 0)
+            {
+                Card newCard = Deck.Instance.DrawStack.Pop();
+                hand.Add(newCard);
+                CreateCardInUi(newCard.data.Sprite, newCard);
+            }
             else
             {
                 Debug.Log("Deck is empty");
                 break;
             }
-
-            CreateCardInUi(hand[i].data.Sprite, hand[i]);
         }
+    }
+
+    public void DiscardHand()
+    {
+        // Logic to clear UI and list
+        foreach (Transform child in handPosition)
+        {
+            Destroy(child.gameObject);
+        }
+        hand.Clear();
     }
 
     private void CreateCardInUi(Sprite sprite, Card card)
