@@ -13,12 +13,13 @@ public class CardPlacement : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
 
     public Vector3 GetPlayerPlayPosition(int index)
     {
-        float offsetMultiplier = index - 1; 
+        float offsetMultiplier = index - 1;
         return _playerPlayPosition.position + (_playerPlayPosition.right * (spacing * offsetMultiplier));
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class StatsDisplay : MonoBehaviour
 {
@@ -30,22 +31,40 @@ public class StatsDisplay : MonoBehaviour
     {
         if (StatManager.Instance == null) return;
 
-        if (strengthText != null) 
+        if (strengthText != null && strengthText.text != StatManager.Instance.currentStrength.ToString())
+        {
             strengthText.text = StatManager.Instance.currentStrength.ToString();
+            strengthText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
+        }
 
-        if (shieldText != null) 
+        if (shieldText != null && shieldText.text != StatManager.Instance.currentShieldStat.ToString())
+        {
             shieldText.text = StatManager.Instance.currentShieldStat.ToString();
+            shieldText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
+        }
 
-        if (handSizeText != null) 
+        if (handSizeText != null && handSizeText.text != StatManager.Instance.currentMaxHandSize.ToString())
+        {
             handSizeText.text = StatManager.Instance.currentMaxHandSize.ToString();
+            handSizeText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
+        }
 
-        if (activeShieldText != null)
+        if (activeShieldText != null && activeShieldText.text != StatManager.Instance.activeShield.ToString())
+        {
             activeShieldText.text = StatManager.Instance.activeShield.ToString();
+            activeShieldText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
+        }
 
-        if (handCountText != null && CardPlayer.Instance != null)
+        if (handCountText != null && CardPlayer.Instance != null && handCountText.text != CardPlayer.Instance.GetHandCount().ToString())
+        {
             handCountText.text = CardPlayer.Instance.GetHandCount().ToString();
+            handCountText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
+        }
 
-        if (deckCountText != null && Deck.Instance != null)
+        if (deckCountText != null && Deck.Instance != null && deckCountText.text != Deck.Instance.DrawStack.Count.ToString())
+        {
             deckCountText.text = Deck.Instance.DrawStack.Count.ToString();
+            deckCountText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
+        }
     }
 }

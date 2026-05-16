@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public enum EnemyIntent
 {
@@ -127,7 +128,10 @@ public class BossAI : MonoBehaviour
 
             if (damage > 0)
             {
-                CardPlayer.Instance.TakeDamage(damage);
+                // Boss attack animation (punch forward/scale)
+                transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f, 10, 1).OnComplete(() => {
+                    CardPlayer.Instance.TakeDamage(damage);
+                });
             }
         }
     }

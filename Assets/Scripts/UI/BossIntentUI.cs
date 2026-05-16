@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class BossIntentUI : MonoBehaviour
 {
@@ -51,7 +52,11 @@ public class BossIntentUI : MonoBehaviour
 
         if (intentIcon != null && iconToUse != null)
         {
-            intentIcon.sprite = iconToUse;
+            if (intentIcon.sprite != iconToUse)
+            {
+                intentIcon.sprite = iconToUse;
+                intentIcon.transform.DOPunchScale(Vector3.one * 0.3f, 0.4f, 10, 1);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class HealthDisplay : MonoBehaviour
 {
@@ -32,14 +33,15 @@ public class HealthDisplay : MonoBehaviour
     {
         if (lifeData == null) return;
 
-        if (healthText != null)
+        if (healthText != null && healthText.text != lifeData.Value.ToString())
         {
             healthText.text = lifeData.Value.ToString();
+            healthText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
         }
 
-        if (healthSlider != null)
+        if (healthSlider != null && healthSlider.value != lifeData.Value)
         {
-            healthSlider.value = lifeData.Value;
+            healthSlider.DOValue(lifeData.Value, 0.5f).SetEase(Ease.OutCubic);
         }
     }
 }

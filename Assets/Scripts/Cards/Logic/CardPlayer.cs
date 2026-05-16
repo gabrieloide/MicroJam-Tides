@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class CardPlayer : MonoBehaviour
 {
@@ -37,6 +38,12 @@ public class CardPlayer : MonoBehaviour
             if (playerLifeValue.Value <= 0)
             {
                 Debug.Log("Player Dead!");
+            }
+            
+            // Camera Shake feedback for taking damage
+            if (Camera.main != null)
+            {
+                Camera.main.transform.DOShakePosition(0.5f, new Vector3(0.3f, 0.3f, 0), 20, 90, false, true);
             }
         }
     }
@@ -96,7 +103,10 @@ public class CardPlayer : MonoBehaviour
             Destroy(display.gameObject);
 
             Vector3 pos = CardPlacement.Instance.GetPlayerPlayPosition(cardsPlayedThisTurn);
-            GameObject card3D = Instantiate(card3dPrefab, pos, Quaternion.identity);
+            GameObject card3D = Instantiate(card3dPrefab, pos + Vector3.up * 2f, Quaternion.identity);
+            card3D.transform.DOMove(pos, 0.4f).SetEase(Ease.OutBounce);
+            card3D.transform.localScale = Vector3.zero;
+            card3D.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
 
             playedCardsThisTurnList.Add(card);
             played3DCards.Add(card3D);
@@ -124,7 +134,11 @@ public class CardPlayer : MonoBehaviour
 
         foreach (var obj in played3DCards)
         {
-            Destroy(obj);
+            obj.transform.DOShakeScale(0.3f, 0.5f).OnComplete(() => {
+                obj.transform.DOScale(0, 0.2f).SetEase(Ease.InBack).OnComplete(() => {
+                    Destroy(obj);
+                });
+            });
         }
 
         played3DCards.Clear();
