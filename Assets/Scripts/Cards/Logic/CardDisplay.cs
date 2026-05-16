@@ -17,10 +17,6 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-    }
-
-    private void Start()
-    {
         originalScale = rectTransform.localScale;
         originalPosition = rectTransform.anchoredPosition;
     }
