@@ -5,13 +5,14 @@ public class StatManager : MonoBehaviour
 {
     public static StatManager Instance { get; private set; }
 
-    [Header("Stats")]
-    public int currentStrength = 10;
+    [Header("Stats")] public int currentStrength = 10;
     public int currentShieldStat = 10;
     public int currentMaxHandSize = 5;
 
-    [Header("Current Turn Status")]
-    public int activeShield = 0;
+    [Header("Card References")] public CardData attackCardReference;
+    public CardData shieldCardReference;
+
+    [Header("Current Turn Status")] public int activeShield = 0;
 
     public static Action OnStatChanged;
 
@@ -22,6 +23,7 @@ public class StatManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
 

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class CardPlayer : MonoBehaviour
 {
     public static CardPlayer Instance { get; private set; }
-    private LifeValue playerLifeValue;
+    [SerializeField] private LifeValue playerLifeValue;
+    [SerializeField] private int initialHealth = 100;
 
     private List<Card> hand = new List<Card>();
     private int cardsPlayedThisTurn;
@@ -19,6 +20,25 @@ public class CardPlayer : MonoBehaviour
             return;
         }
         Instance = this;
+
+        if (playerLifeValue != null)
+        {
+            playerLifeValue.Initialize(initialHealth);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (playerLifeValue != null)
+        {
+            playerLifeValue.ModifyValue(-amount);
+            Debug.Log($"Player took {amount} damage. Current health: {playerLifeValue.Value}");
+
+            if (playerLifeValue.Value <= 0)
+            {
+                Debug.Log("Player Dead!");
+            }
+        }
     }
 
     private void OnEnable()
@@ -57,6 +77,17 @@ public class CardPlayer : MonoBehaviour
             Destroy(child.gameObject);
         }
         hand.Clear();
+    }
+
+    public void PlayCard(CardDisplay display, Card card)
+    {
+        if (hand.Contains(card))
+        {
+            card.Play();
+            hand.Remove(card);
+            Destroy(display.gameObject);
+            Debug.Log($"Card {card.data.CardName} played and removed from hand.");
+        }
     }
 
     private void CreateCardInUi(Sprite sprite, Card card)

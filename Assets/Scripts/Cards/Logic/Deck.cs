@@ -35,8 +35,8 @@ public class Deck : MonoBehaviour
             }
         }
 
-        OnInitializeDeck?.Invoke(STARTING_HAND_SIZE);
         ShuffleDeck();
+        OnInitializeDeck?.Invoke(STARTING_HAND_SIZE);
         Debug.Log(_actualDeck.Count);
     }
 

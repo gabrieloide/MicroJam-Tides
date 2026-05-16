@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: 
   Cost: 0
-  Amount: 0
+  Amount: 1
   Sprite: {fileID: 0}
   strengthGain: 2
   shieldGain: 2
-  handSizeLoss: 1

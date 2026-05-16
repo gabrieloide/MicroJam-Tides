@@ -10,6 +10,6 @@ public class ShieldCardData : CardData
         int shieldValue = StatManager.Instance.currentShieldStat + bonusShield;
         Debug.Log($"Escudando: {CardName} dio {shieldValue} de escudo.");
         StatManager.Instance.AddActiveShield(shieldValue);
-        StatManager.Instance.ModifyShieldStat(-1);
+        StatManager.Instance.ModifyShieldStat(-Cost);
     }
 }

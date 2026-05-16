@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CardDisplay : MonoBehaviour
 {
     [SerializeField] private Image _image;
-    [SerializeField] private Text _text;
-    private int value;
+    [SerializeField] private TMP_Text _valueText;
     private Card card;
 
     private void OnEnable()
@@ -15,7 +15,7 @@ public class CardDisplay : MonoBehaviour
 
     private void OnCardPlayed()
     {
-        card.Play();
+        CardPlayer.Instance.PlayCard(this, card);
     }
 
     private void OnDisable()
@@ -25,13 +25,32 @@ public class CardDisplay : MonoBehaviour
 
     private void UpdateCardValue()
     {
-        _text.text = value.ToString();
+        if (card == null || card.data == null) return;
+
+        int displayValue = 0;
+        if (card.data is AttackCardData attack)
+            displayValue = StatManager.Instance.currentStrength + attack.bonusDamage;
+        else if (card.data is ShieldCardData shield)
+            displayValue = StatManager.Instance.currentShieldStat + shield.bonusShield;
+        else
+            displayValue = card.data.Cost;
+
+
+        if (_valueText != null)
+        {
+            _valueText.text = displayValue.ToString();
+        }
     }
 
     public void Setup(Sprite sprite, Card card)
     {
-        _image.sprite = sprite;
+        if (_image != null)
+        {
+            _image.sprite = sprite;
+        }
+
         this.card = card;
         GetComponent<Button>().onClick.AddListener(OnCardPlayed);
+        UpdateCardValue();
     }
 }

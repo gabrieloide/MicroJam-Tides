@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: 
   Cost: 0
-  Amount: 0
+  Amount: 4
   Sprite: {fileID: 0}
   bonusShield: 0

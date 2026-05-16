@@ -9,7 +9,12 @@ public class AttackCardData : CardData
     {
         int damage = StatManager.Instance.currentStrength + bonusDamage;
         Debug.Log($"Atacando: {CardName} hizo {damage} de daño.");
-        // Aquí iría Boss.Instance.TakeDamage(damage);
-        StatManager.Instance.ModifyStrength(-1);
+        
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.TakeDamage(damage);
+        }
+
+        StatManager.Instance.ModifyStrength(-Cost);
     }
 }

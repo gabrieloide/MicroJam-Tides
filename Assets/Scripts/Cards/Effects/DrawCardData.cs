@@ -9,6 +9,6 @@ public class DrawCardData : CardData
     {
         Debug.Log("Robando cartas adicionales...");
         CardPlayer.Instance.DrawCards(drawAmount);
-        StatManager.Instance.ModifyMaxHandSize(-1);
+        StatManager.Instance.ModifyMaxHandSize(-Cost);
     }
 }

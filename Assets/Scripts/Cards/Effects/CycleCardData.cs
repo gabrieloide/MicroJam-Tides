@@ -10,6 +10,6 @@ public class CycleCardData : CardData
         Debug.Log("Ciclando mano...");
         CardPlayer.Instance.DiscardHand();
         CardPlayer.Instance.DrawCards(cardsToDraw);
-        StatManager.Instance.ModifyMaxHandSize(-1);
+        StatManager.Instance.ModifyMaxHandSize(-Cost);
     }
 }
