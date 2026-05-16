@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181112d7567425045903582327fb0c80, type: 3}
+  m_Name: AudioDatabase
+  m_EditorClassIdentifier: 
+  audioDataList:
+  - id: ChangeTurn 1
+    clip: {fileID: 8300000, guid: b6d814a9b5b2c104793331b41ad7c88b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: ChangeTurn 2
+    clip: {fileID: 8300000, guid: 0c2c47bea43792d448c9ace36dbfb2be, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: change turn 4
+    clip: {fileID: 8300000, guid: 7e8de219026780a4a80eb2221b9a0cac, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}

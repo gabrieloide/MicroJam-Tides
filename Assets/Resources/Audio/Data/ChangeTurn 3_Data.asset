@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eb16a335bc86343b304e3572ebf7b6, type: 3}
+  m_Name: ChangeTurn 3_Data
+  m_EditorClassIdentifier: 
+  id: ChangeTurn 3
+  clip: {fileID: 8300000, guid: 7e8de219026780a4a80eb2221b9a0cac, type: 3}
+  volume: 1
+  pitch: 1
+  loop: 0
+  audioMixerGroup: {fileID: 0}
