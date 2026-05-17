@@ -135,3 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 0}
   _valueText: {fileID: 0}
+  _fontAsset: {fileID: 0}
+  hoverYOffset: 0.06

@@ -10,17 +10,16 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private TMP_Text _valueText;
     [SerializeField] private TMP_FontAsset _fontAsset;
     [SerializeField] private float hoverYOffset = 30f;
+    [SerializeField] private RectTransform visualContainer;
     private Card card;
     
     private Vector3 originalScale;
-    private Vector3 originalPosition;
-    private RectTransform rectTransform;
+    private RectTransform targetRect;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        originalScale = rectTransform.localScale;
-        originalPosition = rectTransform.anchoredPosition;
+        targetRect = visualContainer != null ? visualContainer : GetComponent<RectTransform>();
+        originalScale = targetRect.localScale;
     }
 
     private void OnEnable()
@@ -31,12 +30,12 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void OnDisable()
     {
         StatManager.OnStatChanged -= UpdateCardValue;
-        rectTransform.DOKill();
+        targetRect.DOKill();
     }
 
     private void OnCardPlayed()
     {
-        rectTransform.DOKill();
+        targetRect.DOKill();
         CardPlayer.Instance.PlayCard(this, card);
     }
 
@@ -69,26 +68,26 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         this.card = card;
         
-        rectTransform.localScale = Vector3.zero;
-        rectTransform.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack);
+        targetRect.localScale = Vector3.zero;
+        targetRect.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack);
         
         UpdateCardValue();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        rectTransform.DOScale(originalScale * 1.15f, 0.2f).SetEase(Ease.OutBack);
-        rectTransform.DOAnchorPosY(originalPosition.y + hoverYOffset, 0.2f).SetEase(Ease.OutCirc);
+        targetRect.DOScale(originalScale * 1.15f, 0.2f).SetEase(Ease.OutBack);
+        targetRect.DOLocalMoveY(hoverYOffset, 0.2f).SetEase(Ease.OutCirc);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        rectTransform.DOScale(originalScale, 0.2f).SetEase(Ease.OutQuad);
-        rectTransform.DOAnchorPosY(originalPosition.y, 0.2f).SetEase(Ease.OutQuad);
+        targetRect.DOScale(originalScale, 0.2f).SetEase(Ease.OutQuad);
+        targetRect.DOLocalMoveY(0f, 0.2f).SetEase(Ease.OutQuad);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        rectTransform.DOPunchScale(new Vector3(-0.1f, -0.1f, 0), 0.15f).OnComplete(OnCardPlayed);
+        targetRect.DOPunchScale(new Vector3(-0.1f, -0.1f, 0), 0.15f).OnComplete(OnCardPlayed);
     }
 }
