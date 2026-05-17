@@ -17,6 +17,9 @@ public class CardPlayer : MonoBehaviour
     [SerializeField] private Transform handPosition;
     [SerializeField] private GameObject cardUiPrefab;
     [SerializeField] private GameObject card3dPrefab;
+    [SerializeField] private Material attackMaterial;
+    [SerializeField] private Material shieldMaterial;
+    [SerializeField] private Material utilityMaterial;
 
     public int GetHandCount() => hand.Count;
 
@@ -131,6 +134,18 @@ public class CardPlayer : MonoBehaviour
 
             Vector3 pos = CardPlacement.Instance.GetPlayerPlayPosition(cardsPlayedThisTurn);
             GameObject card3D = Instantiate(card3dPrefab, pos + Vector3.up * 2f, Quaternion.identity);
+            
+            MeshRenderer cardRenderer = card3D.GetComponentInChildren<MeshRenderer>();
+            if (cardRenderer != null)
+            {
+                if (card.data is AttackCardData)
+                    cardRenderer.material = attackMaterial;
+                else if (card.data is ShieldCardData)
+                    cardRenderer.material = shieldMaterial;
+                else
+                    cardRenderer.material = utilityMaterial;
+            }
+
             card3D.transform.DOMove(pos, 0.4f).SetEase(Ease.OutBounce);
             card3D.transform.localScale = Vector3.zero;
             card3D.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
