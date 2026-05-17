@@ -77,8 +77,23 @@ public class GameNotificationManager : MonoBehaviour
         ShowNotification("DEFEAT", "#333333", 5f);
     }
 
+    public void ClearNotifications()
+    {
+        if (activeCoroutine != null)
+        {
+            StopCoroutine(activeCoroutine);
+            activeCoroutine = null;
+        }
+        if (container != null)
+        {
+            container.style.opacity = 0f;
+            container.style.display = DisplayStyle.None;
+        }
+    }
+
     private void ShowNotification(string text, string hexColor, float duration)
     {
+        if (TurnManager.Instance != null && TurnManager.Instance.IsGameOver) return;
         if (container == null || label == null) return;
         
         if (activeCoroutine != null)

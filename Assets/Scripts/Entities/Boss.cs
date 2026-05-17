@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     public Action OnBossTakeDamage;
 
     private Vector3 initialPosition;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         // TACTICAL MECHANIC: Rest gives 50% damage reduction (Shell Armor)
         if (BossAI.Instance != null && BossAI.Instance.CurrentIntent == EnemyIntent.Rest)
         {
@@ -66,6 +69,7 @@ public class Boss : MonoBehaviour
         
         if (bossLifeValue.Value <= 0)
         {
+            isDead = true;
             OnBossDeath?.Invoke();
             if (AudioManager.Instance != null)
             {

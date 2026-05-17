@@ -308,6 +308,11 @@ public class PlayerHUDManager : MonoBehaviour
 
     private void HandleVictoryUI()
     {
+        if (GameNotificationManager.Instance != null)
+        {
+            GameNotificationManager.Instance.ClearNotifications();
+        }
+
         if (gameOverOverlay == null || gameOverTitle == null || gameOverSubtitle == null) return;
 
         gameOverTitle.text = "VICTORY!";
@@ -322,6 +327,11 @@ public class PlayerHUDManager : MonoBehaviour
 
     private void HandleDefeatUI()
     {
+        if (GameNotificationManager.Instance != null)
+        {
+            GameNotificationManager.Instance.ClearNotifications();
+        }
+
         if (gameOverOverlay == null || gameOverTitle == null || gameOverSubtitle == null) return;
 
         gameOverTitle.text = "DEFEAT";
