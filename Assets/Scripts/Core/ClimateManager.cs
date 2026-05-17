@@ -7,11 +7,11 @@ public class ClimateManager : MonoBehaviour
     [SerializeField] private Light directionalLight;
     [SerializeField] private ParticleSystem rainParticles;
 
-    [Header("Sunny Day Settings")]
-    [SerializeField] private Color sunnyLightColor = new Color(1.0f, 0.95f, 0.85f);
-    [SerializeField] private float sunnyIntensity = 1.3f;
-    [SerializeField] private Color sunnyFogColor = new Color(0.6f, 0.8f, 0.9f);
-    [SerializeField] private float sunnyFogDensity = 0.005f;
+    [Header("Sunny Day Settings (Auto-Captured)")]
+    private Color sunnyLightColor;
+    private float sunnyIntensity;
+    private Color sunnyFogColor;
+    private float sunnyFogDensity;
 
     [Header("Storm Settings")]
     [SerializeField] private Color stormLightColor = new Color(0.2f, 0.25f, 0.35f);
@@ -62,6 +62,16 @@ public class ClimateManager : MonoBehaviour
             }
         }
 
+        // 1. CAPTURE ACTUAL SCENE SETTINGS FOR "SUNNY" INSTEAD OF OVERRIDING THEM!
+        if (directionalLight != null)
+        {
+            sunnyLightColor = directionalLight.color;
+            sunnyIntensity = directionalLight.intensity;
+        }
+        
+        sunnyFogColor = RenderSettings.fogColor;
+        sunnyFogDensity = RenderSettings.fogDensity;
+
         RenderSettings.fog = true;
         RenderSettings.fogMode = FogMode.ExponentialSquared;
 
@@ -73,25 +83,48 @@ public class ClimateManager : MonoBehaviour
 
         StatManager.OnStatChanged += UpdateClimateTarget;
         
+        // 2. SUBSCRIBE TO BOSS DAMAGE EVENTS TO TRIGGER STORM!
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossTakeDamage += UpdateClimateTarget;
+        }
+        
         UpdateClimateTarget();
     }
 
     private void OnDestroy()
     {
         StatManager.OnStatChanged -= UpdateClimateTarget;
+        
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossTakeDamage -= UpdateClimateTarget;
+        }
     }
 
     private void UpdateClimateTarget()
     {
-        if (StatManager.Instance == null) return;
+        float statsPct = 1.0f;
+        if (StatManager.Instance != null)
+        {
+            // Max stats sum is now 17 (6 + 6 + 5) due to the new balance
+            float currentSum = StatManager.Instance.currentStrength + 
+                                StatManager.Instance.currentShieldStat + 
+                                StatManager.Instance.currentMaxHandSize;
+            statsPct = Mathf.Clamp01(currentSum / 17.0f);
+        }
 
-        float currentSum = StatManager.Instance.currentStrength + 
-                            StatManager.Instance.currentShieldStat + 
-                            StatManager.Instance.currentMaxHandSize;
+        float bossPct = 1.0f;
+        if (Boss.Instance != null)
+        {
+            // Max Boss HP is 150
+            bossPct = Mathf.Clamp01((float)Boss.Instance.GetHealth() / 150.0f);
+        }
 
-        _degradationFactor = Mathf.Clamp01(currentSum / 25.0f);
+        // 3. WHICHEVER IS LOWER (Boss Health or Player Stats) DRIVES THE STORM!
+        _degradationFactor = Mathf.Min(statsPct, bossPct);
         
-        Debug.Log($"[ClimateManager] Stats total: {currentSum}/25 | Factor degradación: {_degradationFactor:F2}");
+        Debug.Log($"[ClimateManager] Storm Factor: {_degradationFactor:F2} (Boss: {bossPct:F2}, Stats: {statsPct:F2})");
     }
 
     private void Update()
