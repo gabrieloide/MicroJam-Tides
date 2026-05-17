@@ -5,7 +5,7 @@ public class SacrificeCardData : CardData
 {
     public int strengthGain = 5;
     public int shieldGain = 5;
-    public int healthCost = 25;
+    public int healthCost = 20;
 
     public override void ExecuteEffect(Card cardInstance)
     {
