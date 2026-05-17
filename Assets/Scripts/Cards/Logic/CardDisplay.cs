@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
+using Code.Scripts.Audio;
 
 public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
@@ -94,6 +95,11 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         targetRect.DOScale(originalScale * 1.15f, 0.2f).SetEase(Ease.OutBack);
         targetRect.DOLocalMoveY(hoverYOffset, 0.2f).SetEase(Ease.OutCirc);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Card_Hover");
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
