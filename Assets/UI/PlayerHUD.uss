@@ -167,22 +167,7 @@
     -unity-font-style: bold;
     -unity-font: url("../Fonts/Kenney Future.ttf");
     -unity-font-definition: url("../Fonts/Kenney Future.ttf");
-    margin-bottom: 12px;
-}
-
-.tutorial-theme-tag {
-    font-size: 11px;
-    color: #d35400; /* Matches STR orange */
-    -unity-font-style: bold;
-    -unity-font: url("../Fonts/Kenney Future.ttf");
-    -unity-font-definition: url("../Fonts/Kenney Future.ttf");
-    margin-bottom: 25px;
-    background-color: rgba(211, 167, 108, 0.15); /* Soft sandy beach tint background */
-    border-color: #d3a76c;
-    border-width: 1px;
-    border-radius: 6px;
-    padding: 6px 14px;
-    -unity-text-align: middle-center;
+    margin-bottom: 30px;
 }
 
 .rules-row {

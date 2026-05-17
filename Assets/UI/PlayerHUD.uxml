@@ -50,19 +50,18 @@
             <ui:VisualElement class="tutorial-content-premium">
                 <ui:Label text="EBBING TIDES" class="tutorial-title" />
                 <ui:Label text="THE MAREA HAS ARRIVED. SURVIVE." class="tutorial-subtitle" />
-                <ui:Label text="STRENGTH IS INVERSELY PROPORTIONAL TO PROGRESS" class="tutorial-theme-tag" />
                 
                 <ui:VisualElement class="rules-row">
                     <!-- Card 1: Objective -->
                     <ui:VisualElement class="rule-card rule-card-coral">
                         <ui:Label text="THE OBJECTIVE" class="rule-card-title text-coral" />
-                        <ui:Label text="Defeat the Devourer (100 HP) before your permanent stats hit zero. Watch its intents above its head!" class="rule-card-desc" />
+                        <ui:Label text="Defeat the Devourer (100 HP) before your permanent stats hit zero. Watch its intents carefully!" class="rule-card-desc" />
                     </ui:VisualElement>
 
                     <!-- Card 2: Golden Rule -->
                     <ui:VisualElement class="rule-card rule-card-gold">
                         <ui:Label text="GOLDEN RULE" class="rule-card-title text-gold" />
-                        <ui:Label text="Every card played permanently degrades your Strength, Shield, or Hand. Balance offense and defense!" class="rule-card-desc" />
+                        <ui:Label text="Your strength is inversely proportional to progress: playing cards permanently degrades your Strength, Shield, or Hand!" class="rule-card-desc" />
                     </ui:VisualElement>
 
                     <!-- Card 3: Combat -->
