@@ -16,8 +16,12 @@ public class BossIntentUI : MonoBehaviour
     [SerializeField] private Sprite restIcon;
 
     [Header("Health UI")]
-    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Image healthFillImage;
+    [SerializeField] private Image ghostFillImage;
     [SerializeField] private TMP_Text healthText;
+    [SerializeField] private RectTransform healthContainer;
+
+    private float maxHealth = 100f;
 
     private void Start()
     {
@@ -25,8 +29,8 @@ public class BossIntentUI : MonoBehaviour
         {
             Boss.Instance.OnBossTakeDamage += UpdateHealthUI;
             
-            // Set slider max value to initial health (usually 100)
-            if (healthSlider != null) healthSlider.maxValue = Boss.Instance.GetHealth();
+            // Set max health
+            maxHealth = Boss.Instance.GetHealth();
             
             UpdateHealthUI();
         }
@@ -92,15 +96,32 @@ public class BossIntentUI : MonoBehaviour
         if (Boss.Instance == null) return;
 
         int currentHealth = Boss.Instance.GetHealth();
+        float targetFill = Mathf.Clamp01(currentHealth / maxHealth);
         
-        if (healthSlider != null)
+        // 1. Animate main health fill quickly
+        if (healthFillImage != null)
         {
-            healthSlider.DOValue(currentHealth, 0.3f).SetEase(Ease.OutCubic);
+            healthFillImage.DOKill();
+            healthFillImage.DOFillAmount(targetFill, 0.25f).SetEase(Ease.OutQuad);
+        }
+
+        // 2. Animate trailing ghost fill slowly after a short delay
+        if (ghostFillImage != null)
+        {
+            ghostFillImage.DOKill();
+            ghostFillImage.DOFillAmount(targetFill, 0.75f).SetDelay(0.4f).SetEase(Ease.OutCubic);
+        }
+
+        // 3. Add a juicy squash/stretch impact effect to the whole container
+        if (healthContainer != null)
+        {
+            healthContainer.DOKill();
+            healthContainer.localScale = Vector3.one;
+            healthContainer.DOPunchScale(new Vector3(0.12f, -0.08f, 0f), 0.35f, 10, 1f);
         }
         
         if (healthText != null)
         {
-            float maxHealth = healthSlider != null ? healthSlider.maxValue : 100;
             healthText.text = $"{currentHealth}/{maxHealth}";
         }
     }
