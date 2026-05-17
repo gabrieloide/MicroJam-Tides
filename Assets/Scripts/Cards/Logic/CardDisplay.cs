@@ -9,6 +9,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _valueText;
     [SerializeField] private TMP_FontAsset _fontAsset;
+    [SerializeField] private float hoverYOffset = 30f;
     private Card card;
     
     private Vector3 originalScale;
@@ -68,7 +69,6 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         this.card = card;
         
-        // Animación de entrada suave
         rectTransform.localScale = Vector3.zero;
         rectTransform.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack);
         
@@ -78,7 +78,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         rectTransform.DOScale(originalScale * 1.15f, 0.2f).SetEase(Ease.OutBack);
-        rectTransform.DOAnchorPosY(originalPosition.y + 30f, 0.2f).SetEase(Ease.OutCirc);
+        rectTransform.DOAnchorPosY(originalPosition.y + hoverYOffset, 0.2f).SetEase(Ease.OutCirc);
     }
 
     public void OnPointerExit(PointerEventData eventData)
