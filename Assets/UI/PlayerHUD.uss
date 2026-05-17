@@ -215,6 +215,8 @@
     white-space: normal;
     align-self: center;
     -unity-text-align: middle-center;
+    -unity-font: url("../Fonts/Kenney Future.ttf");
+    -unity-font-definition: url("../Fonts/Kenney Future.ttf");
 }
 
 .text-coral { color: #c0392b; }
