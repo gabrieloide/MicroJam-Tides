@@ -61,7 +61,7 @@
                     <!-- Card 2: Golden Rule -->
                     <ui:VisualElement class="rule-card rule-card-gold">
                         <ui:Label text="GOLDEN RULE" class="rule-card-title text-gold" />
-                        <ui:Label text="Your strength is inversely proportional to progress: playing cards permanently degrades your Strength, Shield, or Hand!" class="rule-card-desc" />
+                        <ui:Label text="&lt;b&gt;Your strength is inversely proportional to progress:&lt;/b&gt; playing cards permanently degrades your Strength, Shield, or Hand!" class="rule-card-desc" />
                     </ui:VisualElement>
 
                     <!-- Card 3: Combat -->
