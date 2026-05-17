@@ -108,19 +108,22 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator BossTurnRoutine()
     {
-        // Wait for ENEMY TURN notification to be clearly visible
-        yield return new WaitForSeconds(1.5f);
-
-        // Resolve Player's cards effects sequentially!
+        // 1. Resolve Player's played cards sequentially immediately when ending the turn
         if (CardPlayer.Instance != null)
         {
             yield return StartCoroutine(CardPlayer.Instance.ResolvePlayedCardEffectsRoutine());
         }
 
-        // Wait a bit before boss attacks
-        yield return new WaitForSeconds(0.8f);
+        // 2. Now warn the player of the incoming Boss threat!
+        if (GameNotificationManager.Instance != null)
+        {
+            GameNotificationManager.Instance.ShowEnemyTurn();
+        }
 
-        // Execute Boss attack while cards are still visually on the board
+        // Wait for the ENEMY TURN notification to be clearly visible before the slam
+        yield return new WaitForSeconds(1.5f);
+
+        // 3. Execute Boss attack while cards are still visually on the board
         if (BossAI.Instance != null)
         {
             BossAI.Instance.ExecuteIntent();

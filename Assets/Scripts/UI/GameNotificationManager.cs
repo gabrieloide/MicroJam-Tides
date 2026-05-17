@@ -55,10 +55,11 @@ public class GameNotificationManager : MonoBehaviour
         {
             ShowNotification("YOUR TURN", "#61A2FF", 2f);
         }
-        else if (currentTurn == 1)
-        {
-            ShowNotification("ENEMY TURN", "#FF8C00", 2f);
-        }
+    }
+ 
+    public void ShowEnemyTurn()
+    {
+        ShowNotification("ENEMY TURN", "#FF8C00", 2f);
     }
 
     public void ShowBattleStart()
