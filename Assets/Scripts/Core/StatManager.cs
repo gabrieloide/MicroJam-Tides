@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Code.Scripts.Audio;
 
 public class StatManager : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class StatManager : MonoBehaviour
     {
         currentStrength += amount;
         currentStrength = Mathf.Max(0, currentStrength);
+        if (amount < 0 && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Stat_Degrade");
+        }
         OnStatChanged?.Invoke();
     }
 
@@ -38,6 +43,10 @@ public class StatManager : MonoBehaviour
     {
         currentShieldStat += amount;
         currentShieldStat = Mathf.Max(0, currentShieldStat);
+        if (amount < 0 && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Stat_Degrade");
+        }
         OnStatChanged?.Invoke();
     }
 
@@ -45,6 +54,10 @@ public class StatManager : MonoBehaviour
     {
         currentMaxHandSize += amount;
         currentMaxHandSize = Mathf.Max(0, currentMaxHandSize);
+        if (amount < 0 && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Stat_Degrade");
+        }
         OnStatChanged?.Invoke();
     }
 

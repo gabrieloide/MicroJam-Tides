@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Code.Scripts.Audio;
 
 public enum EnemyIntent
 {
@@ -89,6 +90,11 @@ public class BossAI : MonoBehaviour
             heavyAttackCooldown = isEnraged ? 1 : 2;
         }
         
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Boss_Intent_Change");
+        }
+        
         OnIntentDecided?.Invoke(intent);
         Debug.Log($"[BossAI] Phase: {(isEnraged ? "ENRAGED" : "Normal")} | Decision: {currentIntent}");
     }
@@ -100,6 +106,10 @@ public class BossAI : MonoBehaviour
         if (_boss.GetHealth() <= 40 && !isEnraged)
         {
             isEnraged = true;
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX("SFX_Boss_Enrage");
+            }
             Debug.Log("<color=red>[BossAI] BOSS IS ENRAGED!</color>");
         }
     }

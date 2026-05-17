@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Code.Scripts.Audio;
 
 public class TurnManager : MonoBehaviour
 {
@@ -18,8 +19,20 @@ public class TurnManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic("Beach_Theme");
+        }
+    }
+
     public void NextTurn()
     {
+        if (CurrentTurn == 0 && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Turn_End_Click");
+        }
         CurrentTurn = (CurrentTurn + 1) % 3;
         TurnChange();
     }
@@ -33,6 +46,10 @@ public class TurnManager : MonoBehaviour
         {
             case 0:
                 Debug.Log("Player's Turn");
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySFX("SFX_Player_Turn_Start");
+                }
                 if (BossAI.Instance != null && StatManager.Instance != null && CardPlayer.Instance != null)
                 {
                     BossAI.Instance.DecideIntent(

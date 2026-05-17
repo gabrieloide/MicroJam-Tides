@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using Code.Scripts.Audio;
 
 public class CardPlayer : MonoBehaviour
 {
     public static CardPlayer Instance { get; private set; }
     [SerializeField] private LifeValue playerLifeValue;
+
+    public static System.Action OnPlayerDeath;
 
     private List<Card> hand = new List<Card>();
     private List<Card> playedCardsThisTurnList = new List<Card>();
@@ -28,6 +31,14 @@ public class CardPlayer : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (playerLifeValue != null)
+        {
+            playerLifeValue.Initialize(100);
+        }
+    }
+
     public void TakeDamage(int amount)
     {
         if (playerLifeValue != null)
@@ -35,9 +46,20 @@ public class CardPlayer : MonoBehaviour
             playerLifeValue.ModifyValue(-amount);
             Debug.Log($"Player took {amount} damage. Current health: {playerLifeValue.Value}");
 
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX("SFX_Damage_Player");
+            }
+
             if (playerLifeValue.Value <= 0)
             {
                 Debug.Log("Player Dead!");
+                OnPlayerDeath?.Invoke();
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySFX("SFX_Defeat");
+                    AudioManager.Instance.StopMusic();
+                }
             }
             
             // Camera Shake feedback for taking damage
@@ -72,6 +94,11 @@ public class CardPlayer : MonoBehaviour
                 Card newCard = Deck.Instance.DrawStack.Pop();
                 hand.Add(newCard);
                 CreateCardInUi(newCard.data.Sprite, newCard);
+
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySFX("SFX_Card_Draw");
+                }
             }
             else
             {
@@ -111,6 +138,22 @@ public class CardPlayer : MonoBehaviour
             playedCardsThisTurnList.Add(card);
             played3DCards.Add(card3D);
             cardsPlayedThisTurn++;
+
+            if (AudioManager.Instance != null)
+            {
+                if (card.data is AttackCardData)
+                {
+                    AudioManager.Instance.PlaySFX("SFX_Card_Play_Attack");
+                }
+                else if (card.data is ShieldCardData)
+                {
+                    AudioManager.Instance.PlaySFX("SFX_Card_Play_Shield");
+                }
+                else
+                {
+                    AudioManager.Instance.PlaySFX("SFX_Card_Play_Utility");
+                }
+            }
 
             Debug.Log($"Card {card.data.CardName} placed on board.");
         }

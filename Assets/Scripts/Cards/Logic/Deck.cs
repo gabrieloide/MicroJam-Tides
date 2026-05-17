@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Code.Scripts.Audio;
 using Random = UnityEngine.Random;
 
 public class Deck : MonoBehaviour
@@ -51,6 +52,11 @@ public class Deck : MonoBehaviour
             _actualDeck[i] = _actualDeck[randomIndex];
             _actualDeck[randomIndex] = temp;
             DrawStack.Push(_actualDeck[i]);
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Deck_Shuffle");
         }
 
         Debug.Log("Deck shuffled.");
