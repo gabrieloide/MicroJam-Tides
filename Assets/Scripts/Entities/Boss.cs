@@ -20,10 +20,7 @@ public class Boss : MonoBehaviour
         }
 
         Instance = this;
-    }
 
-    private void Start()
-    {
         if (bossLifeValue != null)
         {
             bossLifeValue.Initialize(100);

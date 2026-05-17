@@ -30,6 +30,7 @@ public class BossIntentUI : MonoBehaviour
             
             // Set max health
             maxHealth = Boss.Instance.GetHealth();
+            if (maxHealth <= 0) maxHealth = 100f; // Safeguard fallback
             
             UpdateHealthUI();
         }
@@ -95,7 +96,7 @@ public class BossIntentUI : MonoBehaviour
         if (Boss.Instance == null) return;
 
         int currentHealth = Boss.Instance.GetHealth();
-        float targetFill = Mathf.Clamp01(currentHealth / maxHealth);
+        float targetFill = maxHealth > 0 ? Mathf.Clamp01((float)currentHealth / maxHealth) : 0f;
         
         // 1. Animate main health fill quickly
         if (healthFillImage != null)
