@@ -13,6 +13,7 @@ public abstract class CardData : ScriptableObject, ICardEffect
     public int Cost;
     public int Amount;
     public Sprite Sprite;
+    public bool isHeavy;
 
     public abstract void ExecuteEffect(Card cardInstance);
 }

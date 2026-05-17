@@ -18,7 +18,9 @@ public class CardPlayer : MonoBehaviour
     [SerializeField] private GameObject cardUiPrefab;
     [SerializeField] private GameObject card3dPrefab;
     [SerializeField] private Material attackMaterial;
+    [SerializeField] private Material heavyAttackMaterial;
     [SerializeField] private Material shieldMaterial;
+    [SerializeField] private Material heavyShieldMaterial;
     [SerializeField] private Material drawMaterial;
     [SerializeField] private Material cycleMaterial;
     [SerializeField] private Material sacrificeMaterial;
@@ -143,9 +145,9 @@ public class CardPlayer : MonoBehaviour
                 if (r.gameObject != card3D)
                 {
                     if (card.data is AttackCardData)
-                        r.material = attackMaterial;
+                        r.material = card.data.isHeavy ? heavyAttackMaterial : attackMaterial;
                     else if (card.data is ShieldCardData)
-                        r.material = shieldMaterial;
+                        r.material = card.data.isHeavy ? heavyShieldMaterial : shieldMaterial;
                     else if (card.data is DrawCardData)
                         r.material = drawMaterial;
                     else if (card.data is CycleCardData)
