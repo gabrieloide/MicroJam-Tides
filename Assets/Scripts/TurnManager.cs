@@ -133,6 +133,9 @@ public class TurnManager : MonoBehaviour
             yield return StartCoroutine(CardPlayer.Instance.ResolvePlayedCardEffectsRoutine());
         }
 
+        // TACTICAL GUARD: If the player won during card resolution, stop the boss turn immediately!
+        if (IsGameOver) yield break;
+
         // 2. Now warn the player of the incoming Boss threat!
         if (GameNotificationManager.Instance != null)
         {
@@ -141,6 +144,9 @@ public class TurnManager : MonoBehaviour
 
         // Wait for the ENEMY TURN notification to be clearly visible before the slam
         yield return new WaitForSeconds(1.5f);
+
+        // TACTICAL GUARD: Double-check before executing physical attack
+        if (IsGameOver) yield break;
 
         // 3. Execute Boss attack while cards are still visually on the board
         if (BossAI.Instance != null)

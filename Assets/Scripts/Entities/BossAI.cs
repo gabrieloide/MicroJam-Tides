@@ -119,6 +119,8 @@ public class BossAI : MonoBehaviour
  
     public void ExecuteIntent()
     {
+        if (TurnManager.Instance != null && TurnManager.Instance.IsGameOver) return;
+
         int damage = 0;
         switch (currentIntent)
         {
