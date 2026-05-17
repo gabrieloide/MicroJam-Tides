@@ -1422,7 +1422,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1435,7 +1435,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206515771}
   m_LocalRotation: {x: -0.63713086, y: 0.6371309, z: -0.30669898, w: -0.30669895}
-  m_LocalPosition: {x: 0, y: 0, z: 0.23804821}
+  m_LocalPosition: {x: 0, y: 0, z: 0.2148}
   m_LocalScale: {x: 0.3571429, y: 0.3571429, z: 0.3571428}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1444,7 +1444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.03752482, y: -0.13284811}
+  m_AnchoredPosition: {x: -0.0375, y: -0.1143}
   m_SizeDelta: {x: 1, y: 0.44225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &210992151
@@ -16525,10 +16525,10 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 0
+  m_Spacing: -0.08
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -16694,7 +16694,7 @@ Transform:
   m_GameObject: {fileID: 1989877040}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.5263307, z: -0, w: 0.8502799}
-  m_LocalPosition: {x: 1.05, y: -1.05, z: -6.43}
+  m_LocalPosition: {x: 3.05, y: -1.05, z: -6.43}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
