@@ -19,14 +19,6 @@ public class GameNotificationManager : MonoBehaviour
             return;
         }
         Instance = this;
-
-        uiDocument = GetComponent<UIDocument>();
-        var root = uiDocument.rootVisualElement;
-        container = root.Q<VisualElement>("notification-container");
-        label = root.Q<Label>("notification-label");
-        
-        container.style.opacity = 0f;
-        container.style.display = DisplayStyle.None;
     }
 
     private void OnEnable()
@@ -41,6 +33,20 @@ public class GameNotificationManager : MonoBehaviour
 
     private void Start()
     {
+        uiDocument = GetComponent<UIDocument>();
+        if (uiDocument != null && uiDocument.rootVisualElement != null)
+        {
+            var root = uiDocument.rootVisualElement;
+            container = root.Q<VisualElement>("notification-container");
+            label = root.Q<Label>("notification-label");
+            
+            if (container != null)
+            {
+                container.style.opacity = 0f;
+                container.style.display = DisplayStyle.None;
+            }
+        }
+
         ShowBattleStart();
     }
 
@@ -93,7 +99,6 @@ public class GameNotificationManager : MonoBehaviour
 
         container.style.display = DisplayStyle.Flex;
         
-        // C# Native Fade-in & Scale Animation (Bypasses USS Bugs)
         float elapsed = 0f;
         float fadeTime = 0.3f;
         while(elapsed < fadeTime)
@@ -101,7 +106,6 @@ public class GameNotificationManager : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / fadeTime;
             
-            // Pseudo ease-out-back
             float scale = Mathf.Lerp(0.5f, 1.0f, Mathf.Sin(t * Mathf.PI * 0.6f));
             
             container.style.opacity = Mathf.Lerp(0f, 1f, t);
@@ -116,7 +120,6 @@ public class GameNotificationManager : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
         
-        // C# Native Fade-out
         elapsed = 0f;
         while(elapsed < fadeTime)
         {

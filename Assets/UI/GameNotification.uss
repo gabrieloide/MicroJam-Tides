@@ -1,8 +1,7 @@
 .notification-container {
     position: absolute;
     top: 20%;
-    left: 50%;
-    translate: -50% -50%;
+    align-self: center;
     align-items: center;
     justify-content: center;
     background-color: rgba(10, 18, 30, 0.9);

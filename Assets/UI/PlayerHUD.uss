@@ -84,7 +84,7 @@
 /* Bottom Center Stats Container */
 .bottom-center-container {
     position: absolute;
-    bottom: 250px;
+    bottom: 40px;
     align-self: center;
     flex-direction: row;
 }
