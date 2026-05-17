@@ -37,12 +37,14 @@ public class StatManager : MonoBehaviour
             AudioManager.Instance.PlaySFX("SFX_Stat_Degrade");
             if (CardPlayer.Instance != null && FloatingTextManager.Instance != null) 
             { 
-                FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1f, $"{amount} STRENGTH!", new Color(0.8f, 0.2f, 0.8f)); 
+                // Spawn degradation lower down (hips)
+                FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 0.7f, $"{amount} STRENGTH!", new Color(0.8f, 0.2f, 0.8f)); 
             }
         }
         else if (amount > 0 && CardPlayer.Instance != null && FloatingTextManager.Instance != null)
         {
-            FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1f, $"+{amount} STRENGTH", Color.yellow);
+            // Spawn strength gain in the middle (chest)
+            FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1.1f, $"+{amount} STRENGTH", Color.yellow);
         }
         OnStatChanged?.Invoke();
     }
@@ -56,8 +58,14 @@ public class StatManager : MonoBehaviour
             AudioManager.Instance.PlaySFX("SFX_Stat_Degrade");
             if (CardPlayer.Instance != null && FloatingTextManager.Instance != null) 
             { 
-                FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1f, $"{amount} MAX SHIELD!", new Color(0.8f, 0.2f, 0.8f)); 
+                // Spawn max shield degradation lower down (hips)
+                FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 0.7f, $"{amount} MAX SHIELD!", new Color(0.8f, 0.2f, 0.8f)); 
             }
+        }
+        else if (amount > 0 && CardPlayer.Instance != null && FloatingTextManager.Instance != null)
+        {
+            // Spawn max shield gain higher up (head/sky)
+            FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1.5f, $"+{amount} MAX SHIELD", Color.cyan);
         }
         OnStatChanged?.Invoke();
     }
@@ -78,7 +86,8 @@ public class StatManager : MonoBehaviour
         activeShield += amount;
         if (amount > 0 && CardPlayer.Instance != null && FloatingTextManager.Instance != null)
         {
-            FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1f, $"+{amount} SHIELD", Color.cyan);
+            // Spawn active shield gain higher up (head/sky)
+            FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1.5f, $"+{amount} SHIELD", Color.cyan);
         }
         OnStatChanged?.Invoke();
     }
