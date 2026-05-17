@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private LifeValue bossLifeValue;
 
     public static Boss Instance { get; private set; }
-    public Action OnBossDeath;
+    public static Action OnBossDeath;
     public Action OnBossTakeDamage;
 
     private Vector3 initialPosition;

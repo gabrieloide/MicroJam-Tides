@@ -48,19 +48,13 @@ public class TurnManager : MonoBehaviour
         }
 
         // Subscribe to Game Over events to freeze logic
-        if (Boss.Instance != null)
-        {
-            Boss.Instance.OnBossDeath += HandleGameOver;
-        }
+        Boss.OnBossDeath += HandleGameOver;
         CardPlayer.OnPlayerDeath += HandleGameOver;
     }
 
     private void OnDestroy()
     {
-        if (Boss.Instance != null)
-        {
-            Boss.Instance.OnBossDeath -= HandleGameOver;
-        }
+        Boss.OnBossDeath -= HandleGameOver;
         CardPlayer.OnPlayerDeath -= HandleGameOver;
     }
 

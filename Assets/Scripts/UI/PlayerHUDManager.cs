@@ -95,10 +95,7 @@ public class PlayerHUDManager : MonoBehaviour
             restartButton.clicked += OnRestartClicked;
         }
 
-        if (Boss.Instance != null)
-        {
-            Boss.Instance.OnBossDeath += HandleVictoryUI;
-        }
+        Boss.OnBossDeath += HandleVictoryUI;
         CardPlayer.OnPlayerDeath += HandleDefeatUI;
     }
 
@@ -125,10 +122,7 @@ public class PlayerHUDManager : MonoBehaviour
             restartButton.clicked -= OnRestartClicked;
         }
 
-        if (Boss.Instance != null)
-        {
-            Boss.Instance.OnBossDeath -= HandleVictoryUI;
-        }
+        Boss.OnBossDeath -= HandleVictoryUI;
         CardPlayer.OnPlayerDeath -= HandleDefeatUI;
     }
 

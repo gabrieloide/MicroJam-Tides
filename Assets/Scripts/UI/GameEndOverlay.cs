@@ -41,21 +41,13 @@ public class GameEndOverlay : MonoBehaviour
             restartButtonDefeat.onClick.AddListener(RestartGame);
         }
 
-        if (Boss.Instance != null)
-        {
-            Boss.Instance.OnBossDeath += ShowVictory;
-        }
-
+        Boss.OnBossDeath += ShowVictory;
         CardPlayer.OnPlayerDeath += ShowDefeat;
     }
 
     private void OnDestroy()
     {
-        if (Boss.Instance != null)
-        {
-            Boss.Instance.OnBossDeath -= ShowVictory;
-        }
-
+        Boss.OnBossDeath -= ShowVictory;
         CardPlayer.OnPlayerDeath -= ShowDefeat;
     }
 
