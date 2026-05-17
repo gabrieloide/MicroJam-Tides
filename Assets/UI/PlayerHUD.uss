@@ -81,40 +81,6 @@
 .text-blue { color: #2980b9; }
 .text-dark { color: #4a3b2c; }
 
-/* Top Center Boss Intent Container */
-.top-center-container {
-    position: absolute;
-    top: 30px;
-    align-self: center;
-    flex-direction: row;
-}
-
-.boss-intent-box {
-    background-color: rgba(44, 30, 17, 0.95);
-    border-color: #e74c3c;
-    border-width: 3px;
-    border-radius: 12px;
-    padding: 8px 16px;
-    flex-direction: row;
-    align-items: center;
-}
-
-.boss-intent-box.bump {
-    scale: 1.15 1.15;
-}
-
-.boss-intent-icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 12px;
-}
-
-.boss-intent-text {
-    font-size: 28px;
-    color: #f1c40f;
-    -unity-font-style: bold;
-}
-
 /* Bottom Center Stats Container */
 .bottom-center-container {
     position: absolute;
