@@ -92,16 +92,16 @@ public class TurnManager : MonoBehaviour
         // Wait for ENEMY TURN notification to be clearly visible
         yield return new WaitForSeconds(1.5f);
 
-        // Resolve Player's cards
+        // Resolve Player's cards effects (Shield applied before attack)
         if (CardPlayer.Instance != null)
         {
-            CardPlayer.Instance.ResolvePlayedCards();
+            CardPlayer.Instance.ResolvePlayedCardEffects();
         }
 
-        // Wait a bit for card visual resolution (shake/shrink)
+        // Wait a bit before boss attacks
         yield return new WaitForSeconds(0.8f);
 
-        // Execute Boss attack
+        // Execute Boss attack while cards are still visually on the board
         if (BossAI.Instance != null)
         {
             BossAI.Instance.ExecuteIntent();
@@ -109,6 +109,12 @@ public class TurnManager : MonoBehaviour
 
         // Wait for the attack animation and damage feedback
         yield return new WaitForSeconds(2.0f);
+        
+        // Clear the 3D cards from the board after the attack finishes
+        if (CardPlayer.Instance != null)
+        {
+            CardPlayer.Instance.ClearPlayedCardsVisuals();
+        }
 
         NextTurn();
     }

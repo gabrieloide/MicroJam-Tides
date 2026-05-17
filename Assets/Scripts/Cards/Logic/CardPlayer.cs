@@ -194,9 +194,9 @@ public class CardPlayer : MonoBehaviour
         }
     }
 
-    public void ResolvePlayedCards()
+    public void ResolvePlayedCardEffects()
     {
-        Debug.Log("Resolving played cards...");
+        Debug.Log("Resolving played card effects...");
         foreach (var card in playedCardsThisTurnList)
         {
             card.Play();
@@ -205,7 +205,10 @@ public class CardPlayer : MonoBehaviour
 
         playedCardsThisTurnList.Clear();
         cardsPlayedThisTurn = 0;
+    }
 
+    public void ClearPlayedCardsVisuals()
+    {
         foreach (var obj in played3DCards)
         {
             obj.transform.DOShakeScale(0.3f, 0.5f).OnComplete(() => {
