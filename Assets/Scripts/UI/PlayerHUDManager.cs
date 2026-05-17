@@ -29,6 +29,7 @@ public class PlayerHUDManager : MonoBehaviour
     // Tutorial Panel elements
     private VisualElement tutorialOverlay;
     private Button startGameButton;
+    private VisualElement sceneFadeOverlay;
 
     private void Awake()
     {
@@ -56,6 +57,7 @@ public class PlayerHUDManager : MonoBehaviour
         // Bind tutorial elements
         tutorialOverlay = root.Q<VisualElement>("tutorial-overlay");
         startGameButton = root.Q<Button>("start-game-button");
+        sceneFadeOverlay = root.Q<VisualElement>("scene-fade-overlay");
     }
 
     private void OnEnable()
@@ -100,6 +102,30 @@ public class PlayerHUDManager : MonoBehaviour
     {
         UpdateStatsUI();
         UpdateHealthUI();
+
+        if (sceneFadeOverlay != null)
+        {
+            StartCoroutine(FadeInSceneRoutine(sceneFadeOverlay));
+        }
+    }
+
+    private IEnumerator FadeInSceneRoutine(VisualElement overlay)
+    {
+        yield return new WaitForEndOfFrame();
+        
+        float elapsed = 0f;
+        float duration = 1.2f; // Smooth 1.2s fade-in from black
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            overlay.style.opacity = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+
+        overlay.style.opacity = 0f;
+        overlay.style.display = DisplayStyle.None;
     }
 
     private void OnStartGameClicked()
@@ -139,6 +165,11 @@ public class PlayerHUDManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("SFX_Player_Turn_Start");
+        }
+
+        if (GameNotificationManager.Instance != null)
+        {
+            GameNotificationManager.Instance.ShowBattleStart();
         }
     }
 

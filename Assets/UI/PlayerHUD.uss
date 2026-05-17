@@ -246,3 +246,13 @@
     background-color: #c0392b;
     scale: 0.95 0.95;
 }
+
+.scene-fade-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 1;
+}

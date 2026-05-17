@@ -46,8 +46,6 @@ public class GameNotificationManager : MonoBehaviour
                 container.style.display = DisplayStyle.None;
             }
         }
-
-        ShowBattleStart();
     }
 
     private void HandleTurnChange()

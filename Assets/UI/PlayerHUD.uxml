@@ -75,5 +75,8 @@
             </ui:VisualElement>
         </ui:VisualElement>
 
+        <!-- Solid black screen overlay for smooth scene fade-in -->
+        <ui:VisualElement name="scene-fade-overlay" class="scene-fade-overlay" picking-mode="Ignore" />
+
     </ui:VisualElement>
 </ui:UXML>
