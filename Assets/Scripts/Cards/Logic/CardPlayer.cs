@@ -250,8 +250,8 @@ public class CardPlayer : MonoBehaviour
 
     private void Update()
     {
-        // Detect Right Click (MouseButton 1 is right-click in Unity) to Undo last card
-        if (Input.GetMouseButtonDown(1))
+        // Use the new Input System API since Legacy Input is disabled in Player Settings
+        if (UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.rightButton.wasPressedThisFrame)
         {
             UndoLastPlayedCard();
         }
