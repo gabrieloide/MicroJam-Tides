@@ -155,6 +155,13 @@ public class CardPlayer : MonoBehaviour
             return;
         }
 
+        // CRITICAL BUGFIX: Prevent playing cards unless it is the player's active turn!
+        if (TurnManager.Instance != null && TurnManager.Instance.GetTurn() != 0)
+        {
+            Debug.Log("[CardPlayer] Cannot play cards during enemy or cleanup turns!");
+            return;
+        }
+
         if (hand.Contains(card) && cardsPlayedThisTurn < 3)
         {
             hand.Remove(card);
