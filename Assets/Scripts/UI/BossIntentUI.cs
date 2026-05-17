@@ -15,6 +15,31 @@ public class BossIntentUI : MonoBehaviour
     [SerializeField] private Sprite heavyAttackIcon;
     [SerializeField] private Sprite restIcon;
 
+    [Header("Health UI")]
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private TMP_Text healthText;
+
+    private void Start()
+    {
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossTakeDamage += UpdateHealthUI;
+            
+            // Set slider max value to initial health (usually 100)
+            if (healthSlider != null) healthSlider.maxValue = Boss.Instance.GetHealth();
+            
+            UpdateHealthUI();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossTakeDamage -= UpdateHealthUI;
+        }
+    }
+
     private void OnEnable()
     {
         BossAI.OnIntentDecided += UpdateIntentUI;
@@ -59,6 +84,23 @@ public class BossIntentUI : MonoBehaviour
                 intentIcon.sprite = iconToUse;
                 intentIcon.transform.DOPunchScale(Vector3.one * 0.3f, 0.4f, 10, 1);
             }
+        }
+    }
+
+    private void UpdateHealthUI()
+    {
+        if (Boss.Instance == null) return;
+
+        int currentHealth = Boss.Instance.GetHealth();
+        
+        if (healthSlider != null)
+        {
+            healthSlider.DOValue(currentHealth, 0.3f).SetEase(Ease.OutCubic);
+        }
+        
+        if (healthText != null)
+        {
+            healthText.text = $"{currentHealth}/{healthSlider != null ? healthSlider.maxValue : 100}";
         }
     }
 }
