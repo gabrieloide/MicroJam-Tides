@@ -3,14 +3,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewSacrificeCard", menuName = "Cards/Utility/Sacrifice")]
 public class SacrificeCardData : CardData
 {
-    public int strengthGain = 2;
-    public int shieldGain = 2;
+    public int strengthGain = 5;
+    public int shieldGain = 5;
+    public int healthCost = 15;
 
     public override void ExecuteEffect(Card cardInstance)
     {
-        Debug.Log("Sacrifice: +Stats for -Hand Limit.");
+        Debug.Log($"Sacrifice: +Stats for -{healthCost} HP.");
+        
         StatManager.Instance.ModifyStrength(strengthGain);
         StatManager.Instance.ModifyShieldStat(shieldGain);
-        StatManager.Instance.ModifyMaxHandSize(-Cost);
+        
+        // Take damage to gain massive stats
+        if (CardPlayer.Instance != null)
+        {
+            CardPlayer.Instance.TakeDamage(healthCost);
+        }
     }
 }
