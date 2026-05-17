@@ -13,7 +13,8 @@
 .notification-label {
     font-size: 60px;
     -unity-font-style: bold;
-    -unity-font: url("project://database/Assets/Fonts/Kenney Future.ttf");
+    -unity-font: url("../Fonts/Kenney Future.ttf");
+    -unity-font-definition: url("../Fonts/Kenney Future.ttf");
     color: #ffffff;
     padding: 20px 40px;
     text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
