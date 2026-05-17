@@ -105,7 +105,7 @@ MonoBehaviour:
     audioMixerGroup: {fileID: 0}
   - id: Beach_Theme
     clip: {fileID: 8300000, guid: 5e640fb3e3a04de469a871726c634315, type: 3}
-    volume: 1
+    volume: 0.58
     pitch: 1
     loop: 1
     audioMixerGroup: {fileID: 0}
