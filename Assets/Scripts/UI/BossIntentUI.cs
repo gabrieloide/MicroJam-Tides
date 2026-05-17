@@ -18,7 +18,6 @@ public class BossIntentUI : MonoBehaviour
     [Header("Health UI")]
     [SerializeField] private Image healthFillImage;
     [SerializeField] private Image ghostFillImage;
-    [SerializeField] private TMP_Text healthText;
     [SerializeField] private RectTransform healthContainer;
 
     private float maxHealth = 100f;
@@ -118,11 +117,6 @@ public class BossIntentUI : MonoBehaviour
             healthContainer.DOKill();
             healthContainer.localScale = Vector3.one;
             healthContainer.DOPunchScale(new Vector3(0.12f, -0.08f, 0f), 0.35f, 10, 1f);
-        }
-        
-        if (healthText != null)
-        {
-            healthText.text = $"{currentHealth}/{maxHealth}";
         }
     }
 }
