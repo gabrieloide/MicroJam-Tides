@@ -126,7 +126,7 @@
 }
 
 /* =========================================================================
-   TUTORIAL / WELCOME SCREEN STYLES (DARK ROGUELIKE GLASS)
+   TUTORIAL / WELCOME SCREEN STYLES (WARM BEACH BOARD GAME)
    ========================================================================= */
 
 .tutorial-overlay {
@@ -135,17 +135,17 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(5, 10, 18, 0.98);
+    background-color: rgba(44, 34, 24, 0.94); /* Warm tropical cocoa sunset dark overlay */
     align-items: center;
     justify-content: center;
     opacity: 1;
 }
 
 .tutorial-content-premium {
-    background-color: rgba(13, 27, 42, 0.88);
-    border-color: rgba(255, 255, 255, 0.1);
-    border-width: 2px;
-    border-radius: 24px;
+    background-color: #f4e1c1; /* Matches beach parchment HUD background */
+    border-color: #885e35; /* Driftwood brown border */
+    border-width: 4px;
+    border-radius: 20px;
     padding: 35px;
     width: 860px;
     align-items: center;
@@ -153,7 +153,7 @@
 
 .tutorial-title {
     font-size: 36px;
-    color: #ff7675;
+    color: #c0392b; /* Matches HP red */
     -unity-font-style: bold;
     -unity-font: url("../Fonts/Kenney Future.ttf");
     -unity-font-definition: url("../Fonts/Kenney Future.ttf");
@@ -163,7 +163,7 @@
 
 .tutorial-subtitle {
     font-size: 13px;
-    color: #f1c40f;
+    color: #885e35; /* Driftwood brown sub */
     -unity-font-style: bold;
     -unity-font: url("../Fonts/Kenney Future.ttf");
     -unity-font-definition: url("../Fonts/Kenney Future.ttf");
@@ -184,22 +184,20 @@
     border-radius: 16px;
     border-width: 2px;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.02);
+    background-color: #fdfbf7; /* Light warm ivory card back */
+    border-color: #d3a76c; /* Sandy gold border */
 }
 
 .rule-card-coral {
-    border-color: rgba(231, 76, 60, 0.35);
-    background-color: rgba(231, 76, 60, 0.04);
+    border-color: #c0392b; /* Warm red border */
 }
 
 .rule-card-gold {
-    border-color: rgba(230, 126, 34, 0.35);
-    background-color: rgba(230, 126, 34, 0.04);
+    border-color: #d35400; /* Warm strength orange border */
 }
 
 .rule-card-ocean {
-    border-color: rgba(52, 152, 219, 0.35);
-    background-color: rgba(52, 152, 219, 0.04);
+    border-color: #2980b9; /* Warm shield blue border */
 }
 
 .rule-card-title {
@@ -213,19 +211,19 @@
 
 .rule-card-desc {
     font-size: 11px;
-    color: #d1d8e0;
+    color: #4a3b2c; /* Warm dark brown text */
     white-space: normal;
     align-self: center;
     -unity-text-align: middle-center;
 }
 
-.text-coral { color: #ff7675; }
-.text-gold { color: #f39c12; }
-.text-ocean { color: #3498db; }
+.text-coral { color: #c0392b; }
+.text-gold { color: #d35400; }
+.text-ocean { color: #2980b9; }
 
 .start-game-btn {
-    background-color: #ff7675;
-    border-color: #e74c3c;
+    background-color: #e74c3c; /* Matches End Turn coral red */
+    border-color: #c0392b;
     border-width: 4px;
     border-radius: 12px;
     color: white;
@@ -238,11 +236,11 @@
 }
 
 .start-game-btn:hover {
-    background-color: #ff8787;
+    background-color: #ff7979;
     scale: 1.05 1.05;
 }
 
 .start-game-btn:active {
-    background-color: #e74c3c;
+    background-color: #c0392b;
     scale: 0.95 0.95;
 }
