@@ -6,8 +6,8 @@ public class StatManager : MonoBehaviour
 {
     public static StatManager Instance { get; private set; }
 
-    [Header("Stats")] public int currentStrength = 6;
-    public int currentShieldStat = 6;
+    [Header("Stats")] public int currentStrength = 10;
+    public int currentShieldStat = 10;
     public int currentMaxHandSize = 5;
 
     [Header("Card References")] public CardData attackCardReference;

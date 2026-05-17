@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewSacrificeCard", menuName = "Cards/Utility/Sacrifice")]
 public class SacrificeCardData : CardData
 {
-    public int strengthGain = 2;
-    public int shieldGain = 2;
-    public int healthCost = 20;
+    public int strengthGain = 3;
+    public int shieldGain = 3;
+    public int healthCost = 15;
 
     public override void ExecuteEffect(Card cardInstance)
     {

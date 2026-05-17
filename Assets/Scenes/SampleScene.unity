@@ -2239,10 +2239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directionalLight: {fileID: 410087040}
   rainParticles: {fileID: 331924972}
-  sunnyLightColor: {r: 1, g: 0.95, b: 0.85, a: 1}
-  sunnyIntensity: 1.3
-  sunnyFogColor: {r: 0.6, g: 0.8, b: 0.9, a: 1}
-  sunnyFogDensity: 0.005
   stormLightColor: {r: 0.2, g: 0.25, b: 0.35, a: 1}
   stormIntensity: 0.15
   stormFogColor: {r: 0.08, g: 0.1, b: 0.15, a: 1}
@@ -13735,8 +13731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b833bcda0763743a6f198aa2f7c518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStrength: 10
-  currentShieldStat: 10
+  currentStrength: 6
+  currentShieldStat: 6
   currentMaxHandSize: 5
   attackCardReference: {fileID: 11400000, guid: 7fb2075c4f6794c4fa63d81438a8a7e0, type: 2}
   shieldCardReference: {fileID: 11400000, guid: 7b9c78caae3c6914c8a53505e8f74f92, type: 2}

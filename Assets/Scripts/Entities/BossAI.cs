@@ -106,7 +106,7 @@ public class BossAI : MonoBehaviour
     {
         if (_boss == null) return;
         
-        if (_boss.GetHealth() <= 60 && !isEnraged)
+        if (_boss.GetHealth() <= 40 && !isEnraged)
         {
             isEnraged = true;
             if (AudioManager.Instance != null)

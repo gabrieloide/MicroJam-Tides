@@ -27,7 +27,7 @@ public class Boss : MonoBehaviour
 
         if (bossLifeValue != null)
         {
-            bossLifeValue.Initialize(150);
+            bossLifeValue.Initialize(100);
         }
     }
 
