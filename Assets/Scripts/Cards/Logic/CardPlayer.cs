@@ -55,7 +55,7 @@ public class CardPlayer : MonoBehaviour
             
             if (FloatingTextManager.Instance != null)
             {
-                FloatingTextManager.Instance.Show(transform.position + Vector3.up * 2f, $"-{amount}", Color.red);
+                FloatingTextManager.Instance.Show(transform.position + Vector3.up * 0.5f, $"-{amount}", Color.red);
             }
 
             if (AudioManager.Instance != null)

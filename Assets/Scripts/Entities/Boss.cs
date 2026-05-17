@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour
 
         if (FloatingTextManager.Instance != null)
         {
-            FloatingTextManager.Instance.Show(transform.position + Vector3.up * 3f, $"-{damage}", Color.white);
+            FloatingTextManager.Instance.Show(transform.position + Vector3.up * 1f, $"-{damage}", Color.white);
         }
 
         if (AudioManager.Instance != null)
