@@ -41,6 +41,7 @@
     font-size: 18px;
     color: #4a3b2c;
     -unity-font-style: bold;
+    -unity-font: url("project://database/Assets/Fonts/Kenney Future.ttf");
 }
 
 .stats-row {
@@ -68,12 +69,14 @@
     font-size: 13px;
     color: #885e35;
     -unity-font-style: bold;
+    -unity-font: url("project://database/Assets/Fonts/Kenney Future.ttf");
     margin-right: 6px;
 }
 
 .stat-value {
     font-size: 16px;
     -unity-font-style: bold;
+    -unity-font: url("project://database/Assets/Fonts/Kenney Future.ttf");
     color: #2c1e11;
 }
 
@@ -104,6 +107,7 @@
     color: white;
     font-size: 24px;
     -unity-font-style: bold;
+    -unity-font: url("project://database/Assets/Fonts/Kenney Future.ttf");
     padding: 12px 25px;
 }
 
