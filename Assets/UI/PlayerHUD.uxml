@@ -55,15 +55,15 @@
                     <!-- Card 1: Objective -->
                     <ui:VisualElement class="rule-card rule-card-coral">
                         <ui:Label text="THE OBJECTIVE" class="rule-card-title text-coral" />
-                        <ui:Label text="Defeat the Devourer (100 HP) before your permanent stats hit zero. Watch its intents carefully!" class="rule-card-desc" />
+                        <ui:Label text="Defeat the Devourer (115 HP) before your health hits zero. Watch its intents carefully!" class="rule-card-desc" />
                     </ui:VisualElement>
-
+ 
                     <!-- Card 2: Golden Rule -->
                     <ui:VisualElement class="rule-card rule-card-gold">
                         <ui:Label text="GOLDEN RULE" class="rule-card-title text-gold" />
-                        <ui:Label text="&lt;b&gt;Your strength is inversely proportional to progress:&lt;/b&gt; playing cards permanently degrades your Strength, Shield, or Hand!" class="rule-card-desc" />
+                        <ui:Label text="&lt;b&gt;Stamina Degradation:&lt;/b&gt; Playing Attacks or Shields permanently degrades your STR and SHD! Play Sacrifice to restore them at the cost of your HP." class="rule-card-desc" />
                     </ui:VisualElement>
-
+ 
                     <!-- Card 3: Combat -->
                     <ui:VisualElement class="rule-card rule-card-ocean">
                         <ui:Label text="THE COMBAT" class="rule-card-title text-ocean" />
