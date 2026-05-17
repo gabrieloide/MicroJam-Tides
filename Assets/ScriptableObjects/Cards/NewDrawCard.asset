@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: NewDrawCard
   m_EditorClassIdentifier: 
   CardName: 
-  Cost: 1
+  Cost: 0
   Amount: 2
   Sprite: {fileID: 21300000, guid: 4b0fdaa38f09bab4b8705458b0740257, type: 3}
   isHeavy: 0
   drawAmount: 2
+  healthCost: 3
