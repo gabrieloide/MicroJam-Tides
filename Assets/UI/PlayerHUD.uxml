@@ -47,26 +47,31 @@
 
         <!-- New: Tutorial Overlay (Drawn on top of everything) -->
         <ui:VisualElement name="tutorial-overlay" class="tutorial-overlay">
-            <ui:VisualElement class="tutorial-content">
+            <ui:VisualElement class="tutorial-content-premium">
                 <ui:Label text="EBBING TIDES" class="tutorial-title" />
-                <ui:Label text="SURVIVE THE MAREA DEVOURER" class="tutorial-subtitle" />
+                <ui:Label text="THE MAREA HAS ARRIVED. SURVIVE." class="tutorial-subtitle" />
                 
-                <ui:VisualElement class="rule-item">
-                    <ui:Label text="1. THE OBJECTIVE" class="rule-title text-coral" />
-                    <ui:Label text="Defeat the Marea Devourer (100 HP) before your permanent stats run out. Watch its intents carefully!" class="rule-desc" />
-                </ui:VisualElement>
+                <ui:VisualElement class="rules-row">
+                    <!-- Card 1: Objective -->
+                    <ui:VisualElement class="rule-card rule-card-coral">
+                        <ui:Label text="THE OBJECTIVE" class="rule-card-title text-coral" />
+                        <ui:Label text="Defeat the Devourer (100 HP) before your permanent stats hit zero. Watch its intents above its head!" class="rule-card-desc" />
+                    </ui:VisualElement>
 
-                <ui:VisualElement class="rule-item">
-                    <ui:Label text="2. THE DEGRADATION" class="rule-title text-gold" />
-                    <ui:Label text="GOLDEN RULE: Playing cards permanently degrades your Strength, Shield, or Hand. Balance offense and defense!" class="rule-desc" />
-                </ui:VisualElement>
+                    <!-- Card 2: Golden Rule -->
+                    <ui:VisualElement class="rule-card rule-card-gold">
+                        <ui:Label text="GOLDEN RULE" class="rule-card-title text-gold" />
+                        <ui:Label text="Every card played permanently degrades your Strength, Shield, or Hand. Balance offense and defense!" class="rule-card-desc" />
+                    </ui:VisualElement>
 
-                <ui:VisualElement class="rule-item">
-                    <ui:Label text="3. THE COMBAT" class="rule-title text-ocean" />
-                    <ui:Label text="Play up to 3 cards per turn. Click END TURN to apply attacks, recharge shields, and endure the boss's strike." class="rule-desc" />
+                    <!-- Card 3: Combat -->
+                    <ui:VisualElement class="rule-card rule-card-ocean">
+                        <ui:Label text="THE COMBAT" class="rule-card-title text-ocean" />
+                        <ui:Label text="Play up to 3 cards per turn. Click END TURN to apply attacks, recharge shields, and face the monster!" class="rule-card-desc" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 
-                <ui:Button name="start-game-button" class="start-game-btn" text="START GAME" />
+                <ui:Button name="start-game-button" class="start-game-btn" text="ENTER THE TIDE" />
             </ui:VisualElement>
         </ui:VisualElement>
 

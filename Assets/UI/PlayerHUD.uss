@@ -126,7 +126,7 @@
 }
 
 /* =========================================================================
-   TUTORIAL / WELCOME SCREEN STYLES
+   TUTORIAL / WELCOME SCREEN STYLES (DARK ROGUELIKE GLASS)
    ========================================================================= */
 
 .tutorial-overlay {
@@ -135,89 +135,114 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(10, 18, 30, 0.96);
+    background-color: rgba(5, 10, 18, 0.98);
     align-items: center;
     justify-content: center;
     opacity: 1;
 }
 
-.tutorial-content {
-    background-color: #f5f0e1;
-    border-color: #c8965a;
-    border-width: 4px;
-    border-radius: 20px;
-    padding: 30px;
-    width: 580px;
+.tutorial-content-premium {
+    background-color: rgba(13, 27, 42, 0.88);
+    border-color: rgba(255, 255, 255, 0.1);
+    border-width: 2px;
+    border-radius: 24px;
+    padding: 35px;
+    width: 860px;
     align-items: center;
 }
 
 .tutorial-title {
-    font-size: 32px;
-    color: #e74c3c;
+    font-size: 36px;
+    color: #ff7675;
     -unity-font-style: bold;
     -unity-font: url("../Fonts/Kenney Future.ttf");
     -unity-font-definition: url("../Fonts/Kenney Future.ttf");
     margin-bottom: 2px;
+    letter-spacing: 2px;
 }
 
 .tutorial-subtitle {
     font-size: 13px;
-    color: #885e35;
+    color: #f1c40f;
     -unity-font-style: bold;
     -unity-font: url("../Fonts/Kenney Future.ttf");
     -unity-font-definition: url("../Fonts/Kenney Future.ttf");
+    margin-bottom: 30px;
+}
+
+.rules-row {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
     margin-bottom: 25px;
 }
 
-.rule-item {
-    background-color: rgba(211, 167, 108, 0.12);
-    border-color: rgba(211, 167, 108, 0.35);
-    border-width: 1px;
-    border-radius: 10px;
-    padding: 12px 16px;
+.rule-card {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border-radius: 16px;
+    border-width: 2px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.rule-card-coral {
+    border-color: rgba(231, 76, 60, 0.35);
+    background-color: rgba(231, 76, 60, 0.04);
+}
+
+.rule-card-gold {
+    border-color: rgba(230, 126, 34, 0.35);
+    background-color: rgba(230, 126, 34, 0.04);
+}
+
+.rule-card-ocean {
+    border-color: rgba(52, 152, 219, 0.35);
+    background-color: rgba(52, 152, 219, 0.04);
+}
+
+.rule-card-title {
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-font: url("../Fonts/Kenney Future.ttf");
+    -unity-font-definition: url("../Fonts/Kenney Future.ttf");
     margin-bottom: 12px;
-    width: 100%;
     align-self: center;
 }
 
-.rule-title {
-    font-size: 14px;
-    -unity-font-style: bold;
-    -unity-font: url("../Fonts/Kenney Future.ttf");
-    -unity-font-definition: url("../Fonts/Kenney Future.ttf");
-    margin-bottom: 6px;
-}
-
-.rule-desc {
-    font-size: 12px;
-    color: #4a3b2c;
+.rule-card-desc {
+    font-size: 11px;
+    color: #d1d8e0;
     white-space: normal;
+    align-self: center;
+    -unity-text-align: middle-center;
 }
 
-.text-coral { color: #e74c3c; }
-.text-gold { color: #d35400; }
-.text-ocean { color: #2980b9; }
+.text-coral { color: #ff7675; }
+.text-gold { color: #f39c12; }
+.text-ocean { color: #3498db; }
 
 .start-game-btn {
-    background-color: #2ecc71;
-    border-color: #27ae60;
+    background-color: #ff7675;
+    border-color: #e74c3c;
     border-width: 4px;
     border-radius: 12px;
     color: white;
-    font-size: 24px;
+    font-size: 22px;
     -unity-font-style: bold;
     -unity-font: url("../Fonts/Kenney Future.ttf");
     -unity-font-definition: url("../Fonts/Kenney Future.ttf");
-    padding: 12px 40px;
-    margin-top: 15px;
+    padding: 12px 45px;
+    margin-top: 10px;
 }
 
 .start-game-btn:hover {
-    background-color: #55efc4;
+    background-color: #ff8787;
     scale: 1.05 1.05;
 }
 
 .start-game-btn:active {
-    background-color: #27ae60;
+    background-color: #e74c3c;
     scale: 0.95 0.95;
 }
