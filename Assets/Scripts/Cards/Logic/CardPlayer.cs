@@ -99,6 +99,11 @@ public class CardPlayer : MonoBehaviour
 
     public void DrawCards(int drawAmount)
     {
+        StartCoroutine(DrawCardsRoutine(drawAmount));
+    }
+
+    private System.Collections.IEnumerator DrawCardsRoutine(int drawAmount)
+    {
         for (int i = 0; i < drawAmount; i++)
         {
             if (Deck.Instance.DrawStack.Count == 0)
@@ -122,6 +127,9 @@ public class CardPlayer : MonoBehaviour
                 Debug.Log("Deck is empty and no cards to refill");
                 break;
             }
+
+            // Small delay to make drawing feel extremely premium and space SFX perfectly
+            yield return new WaitForSeconds(0.12f);
         }
     }
 

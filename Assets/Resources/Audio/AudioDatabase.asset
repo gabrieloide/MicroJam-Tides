@@ -27,7 +27,7 @@ MonoBehaviour:
     audioMixerGroup: {fileID: 0}
   - id: SFX_Card_Draw
     clip: {fileID: 8300000, guid: 0e66de84c870f534681950fdc3cd9712, type: 3}
-    volume: 1
+    volume: 0.511
     pitch: 1
     loop: 0
     audioMixerGroup: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
     audioMixerGroup: {fileID: 0}
   - id: SFX_Deck_Shuffle
     clip: {fileID: 8300000, guid: 73bacda73dd69b3479f55efe78177f92, type: 3}
-    volume: 1
+    volume: 0.539
     pitch: 1
     loop: 0
     audioMixerGroup: {fileID: 0}
