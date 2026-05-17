@@ -15,5 +15,6 @@ MonoBehaviour:
   CardName: 
   Cost: 2
   Amount: 1
-  Sprite: {fileID: 0}
-  bonusDamage: 0
+  Sprite: {fileID: 21300000, guid: 07dbd29fbec606e4093230275ddc860c, type: 3}
+  isHeavy: 1
+  bonusDamage: 1

@@ -3,7 +3,12 @@ guid: 64f28b44e9ae92e4da4adfeb33067ccd
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sprite
+    second: {fileID: 2100000, guid: d429c4fd7b30ba84a82009e39df38863, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
