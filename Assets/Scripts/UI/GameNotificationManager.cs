@@ -55,11 +55,11 @@ public class GameNotificationManager : MonoBehaviour
         int currentTurn = TurnManager.Instance.GetTurn();
         if (currentTurn == 0)
         {
-            ShowNotification("YOUR TURN", "#61A2FF", 1.2f);
+            ShowNotification("YOUR TURN", "#61A2FF", 2f);
         }
         else if (currentTurn == 1)
         {
-            ShowNotification("ENEMY TURN", "#FF8C00", 1.2f);
+            ShowNotification("ENEMY TURN", "#FF8C00", 2f);
         }
     }
 

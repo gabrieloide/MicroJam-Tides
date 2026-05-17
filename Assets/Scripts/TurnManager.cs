@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Code.Scripts.Audio;
 
@@ -60,17 +61,7 @@ public class TurnManager : MonoBehaviour
                 break;
             case 1:
                 Debug.Log("Boss's Turn");
-                if (CardPlayer.Instance != null)
-                {
-                    CardPlayer.Instance.ResolvePlayedCards();
-                }
-                
-                if (BossAI.Instance != null)
-                {
-                    BossAI.Instance.ExecuteIntent();
-                }
-
-                Invoke(nameof(NextTurn), 1.5f);
+                StartCoroutine(BossTurnRoutine());
                 break;
             case 2:
                 Debug.Log("Cleanup Turn");
@@ -94,5 +85,31 @@ public class TurnManager : MonoBehaviour
                 Invoke(nameof(NextTurn), 0.5f);
                 break;
         }
+    }
+
+    private IEnumerator BossTurnRoutine()
+    {
+        // Wait for ENEMY TURN notification to be clearly visible
+        yield return new WaitForSeconds(1.5f);
+
+        // Resolve Player's cards
+        if (CardPlayer.Instance != null)
+        {
+            CardPlayer.Instance.ResolvePlayedCards();
+        }
+
+        // Wait a bit for card visual resolution (shake/shrink)
+        yield return new WaitForSeconds(0.8f);
+
+        // Execute Boss attack
+        if (BossAI.Instance != null)
+        {
+            BossAI.Instance.ExecuteIntent();
+        }
+
+        // Wait for the attack animation and damage feedback
+        yield return new WaitForSeconds(2.0f);
+
+        NextTurn();
     }
 }
