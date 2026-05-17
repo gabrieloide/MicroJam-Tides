@@ -137,19 +137,22 @@ public class CardPlayer : MonoBehaviour
             Vector3 pos = CardPlacement.Instance.GetPlayerPlayPosition(cardsPlayedThisTurn);
             GameObject card3D = Instantiate(card3dPrefab, pos + Vector3.up * 2f, Quaternion.identity);
             
-            MeshRenderer cardRenderer = card3D.GetComponentInChildren<MeshRenderer>();
-            if (cardRenderer != null)
+            MeshRenderer[] renderers = card3D.GetComponentsInChildren<MeshRenderer>(true);
+            foreach (var r in renderers)
             {
-                if (card.data is AttackCardData)
-                    cardRenderer.material = attackMaterial;
-                else if (card.data is ShieldCardData)
-                    cardRenderer.material = shieldMaterial;
-                else if (card.data is DrawCardData)
-                    cardRenderer.material = drawMaterial;
-                else if (card.data is CycleCardData)
-                    cardRenderer.material = cycleMaterial;
-                else if (card.data is SacrificeCardData)
-                    cardRenderer.material = sacrificeMaterial;
+                if (r.gameObject != card3D)
+                {
+                    if (card.data is AttackCardData)
+                        r.material = attackMaterial;
+                    else if (card.data is ShieldCardData)
+                        r.material = shieldMaterial;
+                    else if (card.data is DrawCardData)
+                        r.material = drawMaterial;
+                    else if (card.data is CycleCardData)
+                        r.material = cycleMaterial;
+                    else if (card.data is SacrificeCardData)
+                        r.material = sacrificeMaterial;
+                }
             }
 
             card3D.transform.DOMove(pos, 0.4f).SetEase(Ease.OutBounce);
