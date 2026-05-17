@@ -93,6 +93,8 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (TurnManager.Instance != null && TurnManager.Instance.IsGameOver) return;
+
         targetRect.DOScale(originalScale * 1.15f, 0.2f).SetEase(Ease.OutBack);
         targetRect.DOLocalMoveY(hoverYOffset, 0.2f).SetEase(Ease.OutCirc);
 
@@ -104,12 +106,21 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (TurnManager.Instance != null && TurnManager.Instance.IsGameOver)
+        {
+            targetRect.DOScale(originalScale, 0.1f).SetEase(Ease.OutQuad);
+            targetRect.DOLocalMoveY(0f, 0.1f).SetEase(Ease.OutQuad);
+            return;
+        }
+
         targetRect.DOScale(originalScale, 0.2f).SetEase(Ease.OutQuad);
         targetRect.DOLocalMoveY(0f, 0.2f).SetEase(Ease.OutQuad);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (TurnManager.Instance != null && TurnManager.Instance.IsGameOver) return;
+
         targetRect.DOPunchScale(new Vector3(-0.1f, -0.1f, 0), 0.15f).OnComplete(OnCardPlayed);
     }
 }

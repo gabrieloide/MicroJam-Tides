@@ -13731,8 +13731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b833bcda0763743a6f198aa2f7c518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStrength: 6
-  currentShieldStat: 6
+  currentStrength: 10
+  currentShieldStat: 10
   currentMaxHandSize: 5
   attackCardReference: {fileID: 11400000, guid: 7fb2075c4f6794c4fa63d81438a8a7e0, type: 2}
   shieldCardReference: {fileID: 11400000, guid: 7b9c78caae3c6914c8a53505e8f74f92, type: 2}
