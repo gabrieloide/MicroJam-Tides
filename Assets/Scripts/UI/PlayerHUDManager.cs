@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Code.Scripts.Audio;
 
 public class PlayerHUDManager : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class PlayerHUDManager : MonoBehaviour
     private Button endTurnButton;
     private Coroutine healthBarCoroutine;
 
+    // Tutorial Panel elements
+    private VisualElement tutorialOverlay;
+    private Button startGameButton;
+
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
@@ -47,6 +52,10 @@ public class PlayerHUDManager : MonoBehaviour
         deckBox = root.Q<VisualElement>("deck-box");
 
         endTurnButton = root.Q<Button>("end-turn-button");
+
+        // Bind tutorial elements
+        tutorialOverlay = root.Q<VisualElement>("tutorial-overlay");
+        startGameButton = root.Q<Button>("start-game-button");
     }
 
     private void OnEnable()
@@ -60,6 +69,11 @@ public class PlayerHUDManager : MonoBehaviour
         if (endTurnButton != null)
         {
             endTurnButton.clicked += OnEndTurnClicked;
+        }
+
+        if (startGameButton != null)
+        {
+            startGameButton.clicked += OnStartGameClicked;
         }
     }
 
@@ -75,12 +89,57 @@ public class PlayerHUDManager : MonoBehaviour
         {
             endTurnButton.clicked -= OnEndTurnClicked;
         }
+
+        if (startGameButton != null)
+        {
+            startGameButton.clicked -= OnStartGameClicked;
+        }
     }
 
     private void Start()
     {
         UpdateStatsUI();
         UpdateHealthUI();
+    }
+
+    private void OnStartGameClicked()
+    {
+        if (startGameButton != null)
+        {
+            startGameButton.clicked -= OnStartGameClicked;
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Turn_End_Click");
+        }
+
+        if (tutorialOverlay != null)
+        {
+            StartCoroutine(FadeOutTutorial(tutorialOverlay));
+        }
+    }
+
+    private IEnumerator FadeOutTutorial(VisualElement overlay)
+    {
+        float elapsed = 0f;
+        float duration = 0.5f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            overlay.style.opacity = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+
+        overlay.style.opacity = 0f;
+        overlay.style.display = DisplayStyle.None;
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Player_Turn_Start");
+        }
     }
 
     private void OnEndTurnClicked()

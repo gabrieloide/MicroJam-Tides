@@ -12,4 +12,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181112d7567425045903582327fb0c80, type: 3}
   m_Name: AudioDatabase
   m_EditorClassIdentifier: 
-  audioDataList: []
+  audioDataList:
+  - id: SFX_Boss_Enrage
+    clip: {fileID: 8300000, guid: 693ea775a0679ee42bed9b23de0a4efe, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Boss_Intent_Change
+    clip: {fileID: 8300000, guid: 9b3623a3480f6784baa987e12692f471, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Card_Draw
+    clip: {fileID: 8300000, guid: 0e66de84c870f534681950fdc3cd9712, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Card_Hover
+    clip: {fileID: 8300000, guid: 36707ba552931cc42b0ab326a0d59060, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Card_Play_Attack
+    clip: {fileID: 8300000, guid: 8f1f66836cb34c246a99c068a4dec55d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Card_Play_Shield
+    clip: {fileID: 8300000, guid: 8b4d32003d445dd4c914289a3fe5ca72, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Card_Play_Utility
+    clip: {fileID: 8300000, guid: 84caf48ce9501e7409146c9690031792, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Damage_Boss
+    clip: {fileID: 8300000, guid: 0bb85d37caa839e43b6f89108a8f5755, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Damage_Player
+    clip: {fileID: 8300000, guid: df90cded11e7f324f80c66b9a0c99c88, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Deck_Shuffle
+    clip: {fileID: 8300000, guid: 73bacda73dd69b3479f55efe78177f92, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Defeat
+    clip: {fileID: 8300000, guid: 75b45b3baef71b642831bd1527ac2b54, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Player_Turn_Start
+    clip: {fileID: 8300000, guid: f3f6e9ffb61536142b8c165ed1c32c81, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Stat_Degrade
+    clip: {fileID: 8300000, guid: 7f320cf7c6661b14ba09b926ca3e12eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Turn_End_Click
+    clip: {fileID: 8300000, guid: c6b4ec891fec02b43bc9c63080a9b88f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: SFX_Victory
+    clip: {fileID: 8300000, guid: 9ba16ec9b86ee564da7378ef9801d7c9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
+  - id: Beach_Theme
+    clip: {fileID: 8300000, guid: 5e640fb3e3a04de469a871726c634315, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 0}
