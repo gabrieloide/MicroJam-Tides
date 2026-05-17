@@ -9,6 +9,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _valueText;
     [SerializeField] private TMP_FontAsset _fontAsset;
+    [SerializeField] private Image _badgeImage;
     [SerializeField] private float hoverYOffset = 30f;
     [SerializeField] private RectTransform visualContainer;
     private Card card;
@@ -44,18 +45,33 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (card == null || card.data == null) return;
 
         int displayValue = 0;
-        if (card.data is AttackCardData attack)
-            displayValue = StatManager.Instance.currentStrength + attack.bonusDamage;
-        else if (card.data is ShieldCardData shield)
-            displayValue = StatManager.Instance.currentShieldStat + shield.bonusShield;
-        else
-            displayValue = card.data.Cost;
+        Color themeColor = Color.white;
 
+        if (card.data is AttackCardData attack)
+        {
+            displayValue = StatManager.Instance.currentStrength + attack.bonusDamage;
+            ColorUtility.TryParseHtmlString("#794100", out themeColor);
+        }
+        else if (card.data is ShieldCardData shield)
+        {
+            displayValue = StatManager.Instance.currentShieldStat + shield.bonusShield;
+            ColorUtility.TryParseHtmlString("#61A2FF", out themeColor);
+        }
+        else
+        {
+            displayValue = card.data.Cost;
+            ColorUtility.TryParseHtmlString("#51A200", out themeColor);
+        }
 
         if (_valueText != null)
         {
             _valueText.text = displayValue.ToString();
             if (_fontAsset != null) _valueText.font = _fontAsset;
+        }
+
+        if (_badgeImage != null)
+        {
+            _badgeImage.color = themeColor;
         }
     }
 
