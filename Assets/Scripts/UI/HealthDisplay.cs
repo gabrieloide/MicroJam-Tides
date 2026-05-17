@@ -11,6 +11,7 @@ public class HealthDisplay : MonoBehaviour
     [Header("UI Components")]
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private TMP_FontAsset healthFont;
 
     private void OnEnable()
     {
@@ -42,6 +43,11 @@ public class HealthDisplay : MonoBehaviour
         if (healthSlider != null && healthSlider.value != lifeData.Value)
         {
             healthSlider.DOValue(lifeData.Value, 0.5f).SetEase(Ease.OutCubic);
+        }
+
+        if (healthText != null && healthFont != null)
+        {
+            healthText.font = healthFont;
         }
     }
 }

@@ -8,6 +8,7 @@ public class BossIntentUI : MonoBehaviour
     [Header("UI Components")]
     [SerializeField] private TMP_Text intentValueText;
     [SerializeField] private Image intentIcon;
+    [SerializeField] private TMP_FontAsset intentFont;
 
     [Header("Icons")]
     [SerializeField] private Sprite lightAttackIcon;
@@ -48,6 +49,7 @@ public class BossIntentUI : MonoBehaviour
         if (intentValueText != null)
         {
             intentValueText.text = damageValue > 0 ? damageValue.ToString() : "Zzz";
+            if (intentFont != null) intentValueText.font = intentFont;
         }
 
         if (intentIcon != null && iconToUse != null)

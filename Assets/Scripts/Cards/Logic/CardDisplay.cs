@@ -8,6 +8,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _valueText;
+    [SerializeField] private TMP_FontAsset _fontAsset;
     private Card card;
     
     private Vector3 originalScale;
@@ -54,6 +55,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (_valueText != null)
         {
             _valueText.text = displayValue.ToString();
+            if (_fontAsset != null) _valueText.font = _fontAsset;
         }
     }
 

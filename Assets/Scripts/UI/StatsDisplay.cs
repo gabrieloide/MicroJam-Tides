@@ -11,6 +11,9 @@ public class StatsDisplay : MonoBehaviour
     [SerializeField] private TMP_Text activeShieldText;
     [SerializeField] private TMP_Text handCountText;
     [SerializeField] private TMP_Text deckCountText;
+    
+    [Header("Fonts")]
+    [SerializeField] private TMP_FontAsset pixelFont;
 
     private void OnEnable()
     {
@@ -66,5 +69,17 @@ public class StatsDisplay : MonoBehaviour
             deckCountText.text = Deck.Instance.DrawStack.Count.ToString();
             deckCountText.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f);
         }
+
+        if (pixelFont != null) ApplyFont();
+    }
+
+    private void ApplyFont()
+    {
+        if (strengthText != null) strengthText.font = pixelFont;
+        if (shieldText != null) shieldText.font = pixelFont;
+        if (handSizeText != null) handSizeText.font = pixelFont;
+        if (activeShieldText != null) activeShieldText.font = pixelFont;
+        if (handCountText != null) handCountText.font = pixelFont;
+        if (deckCountText != null) deckCountText.font = pixelFont;
     }
 }
