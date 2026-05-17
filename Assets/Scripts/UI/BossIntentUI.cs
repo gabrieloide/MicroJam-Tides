@@ -100,7 +100,8 @@ public class BossIntentUI : MonoBehaviour
         
         if (healthText != null)
         {
-            healthText.text = $"{currentHealth}/{healthSlider != null ? healthSlider.maxValue : 100}";
+            float maxHealth = healthSlider != null ? healthSlider.maxValue : 100;
+            healthText.text = $"{currentHealth}/{maxHealth}";
         }
     }
 }
