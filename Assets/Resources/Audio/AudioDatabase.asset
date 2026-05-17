@@ -107,5 +107,5 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5e640fb3e3a04de469a871726c634315, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     audioMixerGroup: {fileID: 0}
