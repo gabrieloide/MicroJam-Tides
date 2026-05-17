@@ -162,6 +162,12 @@ public class PlayerHUDManager : MonoBehaviour
         overlay.style.opacity = 0f;
         overlay.style.display = DisplayStyle.None;
 
+        // CINEMATIC SPAWN: Shuffle and draw cards now that the game begins!
+        if (Deck.Instance != null)
+        {
+            Deck.Instance.InitializeStartingDeck();
+        }
+
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("SFX_Player_Turn_Start");

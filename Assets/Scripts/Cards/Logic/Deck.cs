@@ -26,7 +26,7 @@ public class Deck : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void InitializeStartingDeck()
     {
         foreach (var cardType in _cardTypes)
         {
