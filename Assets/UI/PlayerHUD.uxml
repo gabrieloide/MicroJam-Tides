@@ -50,6 +50,7 @@
             <ui:VisualElement class="tutorial-content-premium">
                 <ui:Label text="EBBING TIDES" class="tutorial-title" />
                 <ui:Label text="THE MAREA HAS ARRIVED. SURVIVE." class="tutorial-subtitle" />
+                <ui:Label text="STRENGTH IS INVERSELY PROPORTIONAL TO PROGRESS" class="tutorial-theme-tag" />
                 
                 <ui:VisualElement class="rules-row">
                     <!-- Card 1: Objective -->
