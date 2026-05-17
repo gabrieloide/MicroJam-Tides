@@ -19,7 +19,9 @@ public class CardPlayer : MonoBehaviour
     [SerializeField] private GameObject card3dPrefab;
     [SerializeField] private Material attackMaterial;
     [SerializeField] private Material shieldMaterial;
-    [SerializeField] private Material utilityMaterial;
+    [SerializeField] private Material drawMaterial;
+    [SerializeField] private Material cycleMaterial;
+    [SerializeField] private Material sacrificeMaterial;
 
     public int GetHandCount() => hand.Count;
 
@@ -142,8 +144,12 @@ public class CardPlayer : MonoBehaviour
                     cardRenderer.material = attackMaterial;
                 else if (card.data is ShieldCardData)
                     cardRenderer.material = shieldMaterial;
-                else
-                    cardRenderer.material = utilityMaterial;
+                else if (card.data is DrawCardData)
+                    cardRenderer.material = drawMaterial;
+                else if (card.data is CycleCardData)
+                    cardRenderer.material = cycleMaterial;
+                else if (card.data is SacrificeCardData)
+                    cardRenderer.material = sacrificeMaterial;
             }
 
             card3D.transform.DOMove(pos, 0.4f).SetEase(Ease.OutBounce);
