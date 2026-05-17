@@ -25,7 +25,8 @@ public class GameNotificationManager : MonoBehaviour
         container = root.Q<VisualElement>("notification-container");
         label = root.Q<Label>("notification-label");
         
-        container.RemoveFromClassList("visible");
+        container.style.opacity = 0f;
+        container.style.display = DisplayStyle.None;
     }
 
     private void OnEnable()
@@ -90,11 +91,43 @@ public class GameNotificationManager : MonoBehaviour
             label.style.color = color;
         }
 
-        container.AddToClassList("visible");
+        container.style.display = DisplayStyle.Flex;
         
+        // C# Native Fade-in & Scale Animation (Bypasses USS Bugs)
+        float elapsed = 0f;
+        float fadeTime = 0.3f;
+        while(elapsed < fadeTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / fadeTime;
+            
+            // Pseudo ease-out-back
+            float scale = Mathf.Lerp(0.5f, 1.0f, Mathf.Sin(t * Mathf.PI * 0.6f));
+            
+            container.style.opacity = Mathf.Lerp(0f, 1f, t);
+            container.style.scale = new StyleScale(new Scale(new Vector3(scale, scale, 1f)));
+            container.style.translate = new StyleTranslate(new Translate(new Length(0, LengthUnit.Pixel), new Length(Mathf.Lerp(-30, 0, t), LengthUnit.Pixel), 0));
+            yield return null;
+        }
+
+        container.style.opacity = 1f;
+        container.style.scale = new StyleScale(new Scale(Vector3.one));
+        container.style.translate = new StyleTranslate(new Translate(new Length(0, LengthUnit.Pixel), new Length(0, LengthUnit.Pixel), 0));
+
         yield return new WaitForSeconds(duration);
         
-        container.RemoveFromClassList("visible");
+        // C# Native Fade-out
+        elapsed = 0f;
+        while(elapsed < fadeTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / fadeTime;
+            container.style.opacity = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+        
+        container.style.opacity = 0f;
+        container.style.display = DisplayStyle.None;
         activeCoroutine = null;
     }
 }

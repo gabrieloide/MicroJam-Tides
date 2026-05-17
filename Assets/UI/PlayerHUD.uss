@@ -15,13 +15,10 @@
     border-radius: 12px;
     padding: 6px 14px;
     margin-bottom: 6px;
-    transition-property: all;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-out-back;
 }
 
 .health-container.bump {
-    transform: scale(1.1);
+    scale: 1.1 1.1;
 }
 
 .health-bar-bg {
@@ -38,9 +35,6 @@
     height: 100%;
     background-color: #e74c3c;
     border-radius: 7px;
-    transition-property: width;
-    transition-duration: 0.4s;
-    transition-timing-function: ease-out;
 }
 
 .health-text {
@@ -64,13 +58,10 @@
     flex-direction: row;
     align-items: center;
     min-width: 60px;
-    transition-property: all;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-out-back;
 }
 
 .stat-box.bump {
-    transform: scale(1.15);
+    scale: 1.15 1.15;
 }
 
 .stat-title {
@@ -114,17 +105,14 @@
     font-size: 24px;
     -unity-font-style: bold;
     padding: 12px 25px;
-    transition-property: all;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-out;
 }
 
 .end-turn-btn:hover {
     background-color: #ff7979;
-    transform: scale(1.05);
+    scale: 1.05 1.05;
 }
 
 .end-turn-btn:active {
     background-color: #c0392b;
-    transform: scale(0.95);
+    scale: 0.95 0.95;
 }

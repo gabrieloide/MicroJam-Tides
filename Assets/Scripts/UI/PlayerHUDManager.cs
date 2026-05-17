@@ -23,6 +23,7 @@ public class PlayerHUDManager : MonoBehaviour
     private VisualElement deckBox;
     
     private Button endTurnButton;
+    private Coroutine healthBarCoroutine;
 
     private void Awake()
     {
@@ -100,12 +101,34 @@ public class PlayerHUDManager : MonoBehaviour
             
             if (healthBarFill != null)
             {
-                float fillPct = Mathf.Clamp01((float)playerLife.Value / 100f) * 100f;
-                healthBarFill.style.width = new Length(fillPct, LengthUnit.Percent);
+                float targetPct = Mathf.Clamp01((float)playerLife.Value / 100f) * 100f;
+                if (healthBarCoroutine != null) StopCoroutine(healthBarCoroutine);
+                healthBarCoroutine = StartCoroutine(LerpHealthBar(targetPct));
             }
 
             BumpElement(healthBox);
         }
+    }
+
+    private IEnumerator LerpHealthBar(float targetPct)
+    {
+        float currentPct = healthBarFill.style.width.value.value;
+        // Si el valor inicial es 0 o inválido, arranca desde 100% visualmente rápido
+        if (float.IsNaN(currentPct) || currentPct <= 0f) currentPct = 100f; 
+
+        float elapsed = 0f;
+        float duration = 0.3f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            float newPct = Mathf.Lerp(currentPct, targetPct, t);
+            healthBarFill.style.width = new Length(newPct, LengthUnit.Percent);
+            yield return null;
+        }
+
+        healthBarFill.style.width = new Length(targetPct, LengthUnit.Percent);
     }
 
     private void UpdateStatsUI()
