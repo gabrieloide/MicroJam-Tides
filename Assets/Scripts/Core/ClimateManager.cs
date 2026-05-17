@@ -107,24 +107,44 @@ public class ClimateManager : MonoBehaviour
         float statsPct = 1.0f;
         if (StatManager.Instance != null)
         {
-            // Max stats sum is now 17 (6 + 6 + 5) due to the new balance
+            // Max stats sum is 25 (10 + 10 + 5)
             float currentSum = StatManager.Instance.currentStrength + 
                                 StatManager.Instance.currentShieldStat + 
                                 StatManager.Instance.currentMaxHandSize;
-            statsPct = Mathf.Clamp01(currentSum / 17.0f);
+            float ratio = Mathf.Clamp01(currentSum / 25.0f);
+            
+            // Cinematic threshold: Only degrade weather if stats are below 60%
+            if (ratio < 0.6f)
+            {
+                statsPct = ratio / 0.6f;
+            }
+            else
+            {
+                statsPct = 1.0f;
+            }
         }
 
         float bossPct = 1.0f;
         if (Boss.Instance != null)
         {
-            // Max Boss HP is 150
-            bossPct = Mathf.Clamp01((float)Boss.Instance.GetHealth() / 150.0f);
+            // Max Boss HP is 115
+            float ratio = Mathf.Clamp01((float)Boss.Instance.GetHealth() / 115.0f);
+            
+            // Cinematic threshold: Only degrade weather if Boss HP is below 60%
+            if (ratio < 0.6f)
+            {
+                bossPct = ratio / 0.6f;
+            }
+            else
+            {
+                bossPct = 1.0f;
+            }
         }
 
         // 3. WHICHEVER IS LOWER (Boss Health or Player Stats) DRIVES THE STORM!
         _degradationFactor = Mathf.Min(statsPct, bossPct);
         
-        Debug.Log($"[ClimateManager] Storm Factor: {_degradationFactor:F2} (Boss: {bossPct:F2}, Stats: {statsPct:F2})");
+        Debug.Log($"[ClimateManager] Storm Factor: {_degradationFactor:F2} (BossPct: {bossPct:F2}, StatsPct: {statsPct:F2})");
     }
 
     private void Update()
