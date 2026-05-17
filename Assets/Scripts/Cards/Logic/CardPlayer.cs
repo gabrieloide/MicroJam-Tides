@@ -52,6 +52,11 @@ public class CardPlayer : MonoBehaviour
         {
             playerLifeValue.ModifyValue(-amount);
             Debug.Log($"Player took {amount} damage. Current health: {playerLifeValue.Value}");
+            
+            if (FloatingTextManager.Instance != null)
+            {
+                FloatingTextManager.Instance.Show(transform.position + Vector3.up * 2f, $"-{amount}", Color.red);
+            }
 
             if (AudioManager.Instance != null)
             {

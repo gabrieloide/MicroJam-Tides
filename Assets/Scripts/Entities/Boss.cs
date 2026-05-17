@@ -35,6 +35,11 @@ public class Boss : MonoBehaviour
         bossLifeValue.ModifyValue(-damage);
         OnBossTakeDamage?.Invoke();
 
+        if (FloatingTextManager.Instance != null)
+        {
+            FloatingTextManager.Instance.Show(transform.position + Vector3.up * 3f, $"-{damage}", Color.white);
+        }
+
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("SFX_Damage_Boss");

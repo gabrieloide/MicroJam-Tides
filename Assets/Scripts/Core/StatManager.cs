@@ -35,6 +35,14 @@ public class StatManager : MonoBehaviour
         if (amount < 0 && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("SFX_Stat_Degrade");
+            if (CardPlayer.Instance != null && FloatingTextManager.Instance != null) 
+            { 
+                FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 2.5f, $"{amount} STRENGTH!", new Color(0.8f, 0.2f, 0.8f)); 
+            }
+        }
+        else if (amount > 0 && CardPlayer.Instance != null && FloatingTextManager.Instance != null)
+        {
+            FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 2.5f, $"+{amount} STRENGTH", Color.yellow);
         }
         OnStatChanged?.Invoke();
     }
@@ -46,6 +54,10 @@ public class StatManager : MonoBehaviour
         if (amount < 0 && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("SFX_Stat_Degrade");
+            if (CardPlayer.Instance != null && FloatingTextManager.Instance != null) 
+            { 
+                FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 2.5f, $"{amount} MAX SHIELD!", new Color(0.8f, 0.2f, 0.8f)); 
+            }
         }
         OnStatChanged?.Invoke();
     }
@@ -64,6 +76,10 @@ public class StatManager : MonoBehaviour
     public void AddActiveShield(int amount)
     {
         activeShield += amount;
+        if (amount > 0 && CardPlayer.Instance != null && FloatingTextManager.Instance != null)
+        {
+            FloatingTextManager.Instance.Show(CardPlayer.Instance.transform.position + Vector3.up * 1.5f, $"+{amount} SHIELD", Color.cyan);
+        }
         OnStatChanged?.Invoke();
     }
 

@@ -6,6 +6,11 @@ public class PlayerHUDManager : MonoBehaviour
 {
     [SerializeField] private LifeValue playerLife;
     
+    [Header("Boss Intent Icons")]
+    [SerializeField] private Texture2D lightAttackIcon;
+    [SerializeField] private Texture2D heavyAttackIcon;
+    [SerializeField] private Texture2D restIcon;
+
     private UIDocument uiDocument;
     
     private Label healthValue;
@@ -22,6 +27,10 @@ public class PlayerHUDManager : MonoBehaviour
     private VisualElement handlimitBox;
     private VisualElement deckBox;
     
+    private VisualElement bossIntentBox;
+    private VisualElement bossIntentIcon;
+    private Label bossIntentText;
+
     private Button endTurnButton;
     private Coroutine healthBarCoroutine;
 
@@ -46,12 +55,17 @@ public class PlayerHUDManager : MonoBehaviour
         handlimitBox = root.Q<VisualElement>("handlimit-box");
         deckBox = root.Q<VisualElement>("deck-box");
 
+        bossIntentBox = root.Q<VisualElement>("boss-intent-box");
+        bossIntentIcon = root.Q<VisualElement>("boss-intent-icon");
+        bossIntentText = root.Q<Label>("boss-intent-text");
+
         endTurnButton = root.Q<Button>("end-turn-button");
     }
 
     private void OnEnable()
     {
         StatManager.OnStatChanged += UpdateStatsUI;
+        BossAI.OnIntentDecided += UpdateBossIntentUI;
         if (playerLife != null)
         {
             playerLife.OnValueChanged += UpdateHealthUI;
@@ -66,6 +80,7 @@ public class PlayerHUDManager : MonoBehaviour
     private void OnDisable()
     {
         StatManager.OnStatChanged -= UpdateStatsUI;
+        BossAI.OnIntentDecided -= UpdateBossIntentUI;
         if (playerLife != null)
         {
             playerLife.OnValueChanged -= UpdateHealthUI;
@@ -165,6 +180,39 @@ public class PlayerHUDManager : MonoBehaviour
                 BumpElement(deckBox);
             }
         }
+    }
+
+    private void UpdateBossIntentUI(EnemyIntent intent)
+    {
+        if (bossIntentBox == null) return;
+        
+        int damageValue = 0;
+        Texture2D iconToUse = null;
+
+        switch (intent)
+        {
+            case EnemyIntent.LightAttack:
+                damageValue = 6;
+                iconToUse = lightAttackIcon;
+                break;
+            case EnemyIntent.HeavyAttack:
+                damageValue = 12;
+                iconToUse = heavyAttackIcon;
+                break;
+            case EnemyIntent.Rest:
+                damageValue = 0;
+                iconToUse = restIcon;
+                break;
+        }
+
+        bossIntentText.text = damageValue > 0 ? damageValue.ToString() : "Zzz";
+        
+        if (iconToUse != null)
+        {
+            bossIntentIcon.style.backgroundImage = new StyleBackground(iconToUse);
+        }
+
+        BumpElement(bossIntentBox);
     }
 
     private void BumpElement(VisualElement element)
