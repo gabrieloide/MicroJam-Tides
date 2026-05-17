@@ -181,6 +181,8 @@ public class PlayerHUDManager : MonoBehaviour
 
     private void OnEndTurnClicked()
     {
+        if (TurnManager.Instance != null && TurnManager.Instance.IsGameOver) return;
+
         if (TurnManager.Instance != null && TurnManager.Instance.GetTurn() == 0)
         {
             TurnManager.Instance.NextTurn();

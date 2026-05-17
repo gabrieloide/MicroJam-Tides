@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour
     public static TurnManager Instance { get; private set; }
     private int CurrentTurn = 0;
     public static Action OnTurnChange;
+    public bool IsGameOver { get; private set; } = false;
 
     private void Awake()
     {
@@ -45,10 +46,34 @@ public class TurnManager : MonoBehaviour
         {
             AudioManager.Instance.PlayMusic("Beach_Theme");
         }
+
+        // Subscribe to Game Over events to freeze logic
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossDeath += HandleGameOver;
+        }
+        CardPlayer.OnPlayerDeath += HandleGameOver;
+    }
+
+    private void OnDestroy()
+    {
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossDeath -= HandleGameOver;
+        }
+        CardPlayer.OnPlayerDeath -= HandleGameOver;
+    }
+
+    private void HandleGameOver()
+    {
+        IsGameOver = true;
+        Debug.Log("[TurnManager] Game Over detected. Freezing turn operations.");
     }
 
     public void NextTurn()
     {
+        if (IsGameOver) return; // Prevent turn advancement on Game Over
+
         if (CurrentTurn == 0 && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("SFX_Turn_End_Click");
