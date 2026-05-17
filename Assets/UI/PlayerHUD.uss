@@ -15,7 +15,7 @@
     border-radius: 12px;
     padding: 6px 14px;
     margin-bottom: 6px;
-    transition-property: transform;
+    transition-property: all;
     transition-duration: 0.15s;
     transition-timing-function: ease-out-back;
 }
@@ -64,7 +64,7 @@
     flex-direction: row;
     align-items: center;
     min-width: 60px;
-    transition-property: transform;
+    transition-property: all;
     transition-duration: 0.15s;
     transition-timing-function: ease-out-back;
 }
@@ -114,7 +114,7 @@
     font-size: 24px;
     -unity-font-style: bold;
     padding: 12px 25px;
-    transition-property: transform, background-color;
+    transition-property: all;
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
 }

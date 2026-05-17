@@ -8,7 +8,7 @@
     border-radius: 12px;
     opacity: 0;
     transform: scale(0.6) translate(0, -30px);
-    transition-property: opacity, transform;
+    transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: ease-out-back;
 }
