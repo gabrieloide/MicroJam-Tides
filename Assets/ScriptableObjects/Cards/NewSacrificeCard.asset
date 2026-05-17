@@ -19,4 +19,4 @@ MonoBehaviour:
   isHeavy: 0
   strengthGain: 5
   shieldGain: 5
-  healthCost: 15
+  healthCost: 25
