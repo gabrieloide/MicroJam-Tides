@@ -33,6 +33,19 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        // TACTICAL MECHANIC: Rest gives 50% damage reduction (Shell Armor)
+        if (BossAI.Instance != null && BossAI.Instance.CurrentIntent == EnemyIntent.Rest)
+        {
+            int originalDamage = damage;
+            damage = Mathf.Max(1, damage / 2);
+            int mitigated = originalDamage - damage;
+
+            if (FloatingTextManager.Instance != null)
+            {
+                FloatingTextManager.Instance.Show(transform.position + Vector3.up * 2f, $"SHELL SHIELD! (-{mitigated} damage)", new Color(0.3f, 0.7f, 0.9f));
+            }
+        }
+
         bossLifeValue.ModifyValue(-damage);
         OnBossTakeDamage?.Invoke();
 
