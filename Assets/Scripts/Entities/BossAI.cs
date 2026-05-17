@@ -106,7 +106,7 @@ public class BossAI : MonoBehaviour
     {
         if (_boss == null) return;
         
-        if (_boss.GetHealth() <= 40 && !isEnraged)
+        if (_boss.GetHealth() <= 45 && !isEnraged)
         {
             isEnraged = true;
             if (AudioManager.Instance != null)
@@ -116,17 +116,17 @@ public class BossAI : MonoBehaviour
             Debug.Log("<color=red>[BossAI] BOSS IS ENRAGED!</color>");
         }
     }
-
+ 
     public void ExecuteIntent()
     {
         int damage = 0;
         switch (currentIntent)
         {
-            case EnemyIntent.LightAttack: damage = 14; break;
-            case EnemyIntent.HeavyAttack: damage = 28; break;
+            case EnemyIntent.LightAttack: damage = 15; break;
+            case EnemyIntent.HeavyAttack: damage = 30; break;
             case EnemyIntent.Rest: damage = 0; break;
         }
-
+ 
         Debug.Log($"[BossAI] Executing Intent: {currentIntent} for {damage} damage.");
 
         if (damage > 0 && StatManager.Instance != null && CardPlayer.Instance != null)
