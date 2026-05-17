@@ -1,6 +1,7 @@
 .notification-container {
     position: absolute;
-    top: 20%;
+    top: 50%;
+    translate: 0 -50%;
     align-self: center;
     align-items: center;
     justify-content: center;
