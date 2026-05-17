@@ -18,6 +18,25 @@ public class TurnManager : MonoBehaviour
         }
 
         Instance = this;
+
+        // Self-heal AudioManager: Load & bind AudioDatabase dynamically if unassigned
+        if (AudioManager.Instance != null)
+        {
+            var field = typeof(AudioManager).GetField("_database", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (field != null && field.GetValue(AudioManager.Instance) == null)
+            {
+                var db = Resources.Load<AudioDatabase>("Audio/AudioDatabase");
+                if (db != null)
+                {
+                    field.SetValue(AudioManager.Instance, db);
+                    Debug.Log("[Audio Self-Heal] Successfully loaded and bound AudioDatabase to AudioManager dynamically!");
+                }
+                else
+                {
+                    Debug.LogError("[Audio Self-Heal] Failed to find AudioDatabase in Resources/Audio/AudioDatabase!");
+                }
+            }
+        }
     }
 
     private void Start()
