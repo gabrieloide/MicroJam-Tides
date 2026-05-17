@@ -1,0 +1,40 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi:schemaLocation="UnityEngine.UIElements ../../UIElementsSchema/UnityEngine.UIElements.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ui:Style src="project://database/Assets/UI/PlayerHUD.uss" />
+    <ui:VisualElement name="hud-container" picking-mode="Ignore" class="hud-container">
+        
+        <!-- Health Section -->
+        <ui:VisualElement name="health-box" class="stat-box health-box" picking-mode="Ignore">
+            <ui:Label text="HP" class="stat-title" picking-mode="Ignore" />
+            <ui:Label name="health-value" text="100" class="stat-value text-green" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="stats-row" picking-mode="Ignore">
+            <!-- Strength Section -->
+            <ui:VisualElement name="strength-box" class="stat-box" picking-mode="Ignore">
+                <ui:Label text="STR" class="stat-title" picking-mode="Ignore" />
+                <ui:Label name="strength-value" text="0" class="stat-value text-orange" picking-mode="Ignore" />
+            </ui:VisualElement>
+
+            <!-- Shield Section -->
+            <ui:VisualElement name="shield-box" class="stat-box" picking-mode="Ignore">
+                <ui:Label text="SHD" class="stat-title" picking-mode="Ignore" />
+                <ui:Label name="shield-value" text="0" class="stat-value text-blue" picking-mode="Ignore" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="stats-row" picking-mode="Ignore">
+            <!-- Hand Limit Section -->
+            <ui:VisualElement name="handlimit-box" class="stat-box" picking-mode="Ignore">
+                <ui:Label text="HAND" class="stat-title" picking-mode="Ignore" />
+                <ui:Label name="handlimit-value" text="0/5" class="stat-value text-white" picking-mode="Ignore" />
+            </ui:VisualElement>
+
+            <!-- Deck Size Section -->
+            <ui:VisualElement name="deck-box" class="stat-box" picking-mode="Ignore">
+                <ui:Label text="DECK" class="stat-title" picking-mode="Ignore" />
+                <ui:Label name="deck-value" text="15" class="stat-value text-white" picking-mode="Ignore" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

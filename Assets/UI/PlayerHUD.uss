@@ -1,0 +1,64 @@
+.hud-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stats-row {
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.stat-box {
+    background-color: rgba(10, 18, 30, 0.85);
+    border-width: 2px;
+    border-color: rgba(97, 162, 255, 0.3);
+    border-radius: 8px;
+    padding: 5px 15px;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out-back;
+}
+
+.stat-box.bump {
+    transform: scale(1.25);
+}
+
+.health-box {
+    border-color: rgba(100, 255, 100, 0.5);
+    min-width: 170px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.stat-title {
+    font-size: 18px;
+    color: #aaaaaa;
+    -unity-font-style: bold;
+    margin-bottom: -5px;
+}
+.health-box .stat-title {
+    margin-bottom: 0px;
+    margin-right: 10px;
+    font-size: 26px;
+}
+
+.stat-value {
+    font-size: 26px;
+    -unity-font-style: bold;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+}
+.health-box .stat-value {
+    font-size: 34px;
+}
+
+.text-green { color: #51A200; }
+.text-orange { color: #FF8C00; }
+.text-blue { color: #61A2FF; }
+.text-white { color: #FFFFFF; }

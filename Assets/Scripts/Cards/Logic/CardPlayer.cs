@@ -67,6 +67,11 @@ public class CardPlayer : MonoBehaviour
                     AudioManager.Instance.PlaySFX("SFX_Defeat");
                     AudioManager.Instance.StopMusic();
                 }
+
+                if (GameNotificationManager.Instance != null)
+                {
+                    GameNotificationManager.Instance.ShowDefeat();
+                }
             }
             
             // Camera Shake feedback for taking damage

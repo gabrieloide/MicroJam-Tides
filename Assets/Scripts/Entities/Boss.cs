@@ -50,6 +50,12 @@ public class Boss : MonoBehaviour
                 AudioManager.Instance.PlaySFX("SFX_Victory");
                 AudioManager.Instance.StopMusic();
             }
+            
+            if (GameNotificationManager.Instance != null)
+            {
+                GameNotificationManager.Instance.ShowVictory();
+            }
+
             transform.DOScale(0, 1f).SetEase(Ease.InBack);
         }
     }
