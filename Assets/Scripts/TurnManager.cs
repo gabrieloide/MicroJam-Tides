@@ -111,10 +111,10 @@ public class TurnManager : MonoBehaviour
         // Wait for ENEMY TURN notification to be clearly visible
         yield return new WaitForSeconds(1.5f);
 
-        // Resolve Player's cards effects (Shield applied before attack)
+        // Resolve Player's cards effects sequentially!
         if (CardPlayer.Instance != null)
         {
-            CardPlayer.Instance.ResolvePlayedCardEffects();
+            yield return StartCoroutine(CardPlayer.Instance.ResolvePlayedCardEffectsRoutine());
         }
 
         // Wait a bit before boss attacks

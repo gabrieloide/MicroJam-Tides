@@ -207,13 +207,31 @@ public class CardPlayer : MonoBehaviour
         }
     }
 
-    public void ResolvePlayedCardEffects()
+    public System.Collections.IEnumerator ResolvePlayedCardEffectsRoutine()
     {
-        Debug.Log("Resolving played card effects...");
-        foreach (var card in playedCardsThisTurnList)
+        Debug.Log("Resolving played card effects sequentially...");
+        
+        // Create a copy list to iterate safely
+        List<Card> tempCards = new List<Card>(playedCardsThisTurnList);
+        
+        for (int i = 0; i < tempCards.Count; i++)
         {
+            Card card = tempCards[i];
+            
+            // Visual feedback: Make the corresponding 3D board card jump and scale slightly when it activates!
+            if (i < played3DCards.Count && played3DCards[i] != null)
+            {
+                GameObject card3D = played3DCards[i];
+                card3D.transform.DOKill();
+                card3D.transform.DOPunchPosition(Vector3.up * 0.4f, 0.4f, 5, 1);
+                card3D.transform.DOPunchScale(Vector3.one * 0.12f, 0.4f, 5, 1);
+            }
+
             card.Play();
             Deck.Instance.DiscardCard(card);
+
+            // Wait 0.8 seconds between card activations to appreciate float texts, stats, and SFX individually
+            yield return new WaitForSeconds(0.8f);
         }
 
         playedCardsThisTurnList.Clear();
