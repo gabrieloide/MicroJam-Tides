@@ -11,6 +11,8 @@ public class Boss : MonoBehaviour
     public Action OnBossDeath;
     public Action OnBossTakeDamage;
 
+    private Vector3 initialPosition;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,6 +22,8 @@ public class Boss : MonoBehaviour
         }
 
         Instance = this;
+
+        initialPosition = transform.localPosition;
 
         if (bossLifeValue != null)
         {
@@ -42,6 +46,9 @@ public class Boss : MonoBehaviour
             AudioManager.Instance.PlaySFX("SFX_Damage_Boss");
         }
 
+        // Prevents the drift bug by killing previous shakes and resetting to initial position
+        transform.DOKill();
+        transform.localPosition = initialPosition;
         transform.DOShakePosition(0.4f, new Vector3(0.5f, 0f, 0f), 20, 90, false, true);
         
         if (bossLifeValue.Value <= 0)
