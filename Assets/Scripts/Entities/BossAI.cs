@@ -18,6 +18,9 @@ public class BossAI : MonoBehaviour
     [SerializeField] private EnemyIntent currentIntent;
     [SerializeField] private bool isEnraged;
     [SerializeField] private int heavyAttackCooldown = 0;
+
+    [Header("Visuals")]
+    [SerializeField] private TentacleController[] tentacles;
     
     private Boss _boss;
 
@@ -138,10 +141,20 @@ public class BossAI : MonoBehaviour
 
             if (damage > 0)
             {
-                // Boss attack animation (punch forward/scale)
-                transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f, 10, 1).OnComplete(() => {
-                    CardPlayer.Instance.TakeDamage(damage);
-                });
+                int finalDamage = damage;
+                if (tentacles != null && tentacles.Length > 0)
+                {
+                    int randomIndex = Random.Range(0, tentacles.Length);
+                    tentacles[randomIndex].PlaySlamAnimation(() => {
+                        CardPlayer.Instance.TakeDamage(finalDamage);
+                    });
+                }
+                else
+                {
+                    transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f, 10, 1).OnComplete(() => {
+                        CardPlayer.Instance.TakeDamage(finalDamage);
+                    });
+                }
             }
         }
     }
