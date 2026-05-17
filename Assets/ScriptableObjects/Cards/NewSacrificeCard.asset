@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: NewSacrificeCard
   m_EditorClassIdentifier: 
   CardName: 
-  Cost: 0
-  Amount: 1
+  Cost: 1
+  Amount: 3
   Sprite: {fileID: 21300000, guid: f1ab86d104f24ae4284da0d12a035c4b, type: 3}
   isHeavy: 0
-  strengthGain: 2
-  shieldGain: 2
+  strengthGain: 5
+  shieldGain: 5

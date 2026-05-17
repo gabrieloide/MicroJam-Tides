@@ -122,8 +122,8 @@ public class BossAI : MonoBehaviour
         int damage = 0;
         switch (currentIntent)
         {
-            case EnemyIntent.LightAttack: damage = 6; break;
-            case EnemyIntent.HeavyAttack: damage = 12; break;
+            case EnemyIntent.LightAttack: damage = 14; break;
+            case EnemyIntent.HeavyAttack: damage = 28; break;
             case EnemyIntent.Rest: damage = 0; break;
         }
 
