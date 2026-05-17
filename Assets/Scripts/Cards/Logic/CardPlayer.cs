@@ -248,6 +248,67 @@ public class CardPlayer : MonoBehaviour
         return count;
     }
 
+    private void Update()
+    {
+        // Detect Right Click (MouseButton 1 is right-click in Unity) to Undo last card
+        if (Input.GetMouseButtonDown(1))
+        {
+            UndoLastPlayedCard();
+        }
+    }
+
+    public void UndoLastPlayedCard()
+    {
+        // Only allow undoing during the Player's active turn
+        if (TurnManager.Instance != null && TurnManager.Instance.GetTurn() != 0)
+        {
+            Debug.Log("[Undo] Cannot undo cards during enemy or cleanup turns!");
+            return;
+        }
+
+        if (playedCardsThisTurnList.Count == 0 || played3DCards.Count == 0)
+        {
+            Debug.Log("[Undo] No cards played this turn to undo!");
+            return;
+        }
+
+        // Get last played card data and remove from queue
+        int lastIndex = playedCardsThisTurnList.Count - 1;
+        Card lastCard = playedCardsThisTurnList[lastIndex];
+        playedCardsThisTurnList.RemoveAt(lastIndex);
+
+        // Get last played 3D card model on board and remove from queue
+        int last3DIndex = played3DCards.Count - 1;
+        GameObject last3D = played3DCards[last3DIndex];
+        played3DCards.RemoveAt(last3DIndex);
+
+        // Satisfying shrink animation before destroying the 3D board card
+        if (last3D != null)
+        {
+            last3D.transform.DOKill();
+            last3D.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => {
+                Destroy(last3D);
+            });
+        }
+
+        // Add back to data hand list
+        hand.Add(lastCard);
+
+        // Recreate the UI visual card in your hand
+        CreateCardInUi(lastCard.data.Sprite, lastCard);
+
+        // Decrement our played cards slot counter
+        cardsPlayedThisTurn--;
+
+        // Play a nice physical draw feedback sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Card_Draw");
+        }
+
+        Debug.Log($"[Undo] Returned {lastCard.data.CardName} to hand. Played slot reset to: {cardsPlayedThisTurn}");
+    }
+
     private void CreateCardInUi(Sprite sprite, Card card)
     {
         var c = Instantiate(cardUiPrefab, handPosition);
