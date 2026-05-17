@@ -78,5 +78,14 @@
         <!-- Solid black screen overlay for smooth scene fade-in -->
         <ui:VisualElement name="scene-fade-overlay" class="scene-fade-overlay" picking-mode="Ignore" />
 
+        <!-- New: Native Premium Game Over Overlay -->
+        <ui:VisualElement name="game-over-overlay" class="game-over-overlay" picking-mode="Ignore" style="display: none; opacity: 0;">
+            <ui:VisualElement class="game-over-content">
+                <ui:Label name="game-over-title" text="DEFEAT" class="game-over-title" />
+                <ui:Label name="game-over-subtitle" text="THE TIDES HAVE CLAIMED ANOTHER VICTIM..." class="game-over-subtitle" />
+                <ui:Button name="restart-button" class="restart-game-btn" text="PLAY AGAIN" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
     </ui:VisualElement>
 </ui:UXML>

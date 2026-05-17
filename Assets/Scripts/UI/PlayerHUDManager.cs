@@ -31,6 +31,12 @@ public class PlayerHUDManager : MonoBehaviour
     private Button startGameButton;
     private VisualElement sceneFadeOverlay;
 
+    // Game Over Panel elements
+    private VisualElement gameOverOverlay;
+    private Label gameOverTitle;
+    private Label gameOverSubtitle;
+    private Button restartButton;
+
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
@@ -58,6 +64,12 @@ public class PlayerHUDManager : MonoBehaviour
         tutorialOverlay = root.Q<VisualElement>("tutorial-overlay");
         startGameButton = root.Q<Button>("start-game-button");
         sceneFadeOverlay = root.Q<VisualElement>("scene-fade-overlay");
+
+        // Bind Game Over elements
+        gameOverOverlay = root.Q<VisualElement>("game-over-overlay");
+        gameOverTitle = root.Q<Label>("game-over-title");
+        gameOverSubtitle = root.Q<Label>("game-over-subtitle");
+        restartButton = root.Q<Button>("restart-button");
     }
 
     private void OnEnable()
@@ -77,6 +89,17 @@ public class PlayerHUDManager : MonoBehaviour
         {
             startGameButton.clicked += OnStartGameClicked;
         }
+
+        if (restartButton != null)
+        {
+            restartButton.clicked += OnRestartClicked;
+        }
+
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossDeath += HandleVictoryUI;
+        }
+        CardPlayer.OnPlayerDeath += HandleDefeatUI;
     }
 
     private void OnDisable()
@@ -96,6 +119,17 @@ public class PlayerHUDManager : MonoBehaviour
         {
             startGameButton.clicked -= OnStartGameClicked;
         }
+
+        if (restartButton != null)
+        {
+            restartButton.clicked -= OnRestartClicked;
+        }
+
+        if (Boss.Instance != null)
+        {
+            Boss.Instance.OnBossDeath -= HandleVictoryUI;
+        }
+        CardPlayer.OnPlayerDeath -= HandleDefeatUI;
     }
 
     private void Start()
@@ -276,5 +310,63 @@ public class PlayerHUDManager : MonoBehaviour
         element.AddToClassList("bump");
         yield return new WaitForSeconds(0.15f);
         element.RemoveFromClassList("bump");
+    }
+
+    private void HandleVictoryUI()
+    {
+        if (gameOverOverlay == null || gameOverTitle == null || gameOverSubtitle == null) return;
+
+        gameOverTitle.text = "VICTORY!";
+        if (ColorUtility.TryParseHtmlString("#FFD700", out Color goldColor))
+        {
+            gameOverTitle.style.color = goldColor;
+        }
+        gameOverSubtitle.text = "YOU HAVE DEFEATED THE DEVOURER AND TAMED THE TIDES!";
+
+        ShowGameOverOverlay();
+    }
+
+    private void HandleDefeatUI()
+    {
+        if (gameOverOverlay == null || gameOverTitle == null || gameOverSubtitle == null) return;
+
+        gameOverTitle.text = "DEFEAT";
+        if (ColorUtility.TryParseHtmlString("#C0392B", out Color redColor))
+        {
+            gameOverTitle.style.color = redColor;
+        }
+        gameOverSubtitle.text = "THE MAREA HAS CLAIMED ANOTHER VICTIM. TRY AGAIN.";
+
+        ShowGameOverOverlay();
+    }
+
+    private void ShowGameOverOverlay()
+    {
+        if (gameOverOverlay == null) return;
+        gameOverOverlay.style.display = DisplayStyle.Flex;
+        StartCoroutine(FadeInOverlay(gameOverOverlay));
+    }
+
+    private IEnumerator FadeInOverlay(VisualElement overlay)
+    {
+        float elapsed = 0f;
+        float duration = 0.8f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            overlay.style.opacity = Mathf.Lerp(0f, 1f, t);
+            yield return null;
+        }
+        overlay.style.opacity = 1f;
+    }
+
+    private void OnRestartClicked()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_Turn_End_Click");
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
