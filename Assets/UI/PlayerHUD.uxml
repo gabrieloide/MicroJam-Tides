@@ -4,7 +4,6 @@
         
         <!-- Top Left: Stats HUD -->
         <ui:VisualElement name="hud-container" picking-mode="Ignore" class="hud-container">
-            
             <!-- Health Section -->
             <ui:VisualElement name="health-box" class="health-container" picking-mode="Ignore">
                 <ui:Label text="HP" class="health-text" picking-mode="Ignore" style="margin-right: 8px; color: #c0392b;" />
@@ -14,7 +13,7 @@
                 <ui:Label name="health-value" text="100" class="health-text" picking-mode="Ignore" />
             </ui:VisualElement>
 
-            <!-- Stats Section -->
+            <!-- Stats Section (Strength & Shield only now) -->
             <ui:VisualElement class="stats-row" picking-mode="Ignore">
                 <ui:VisualElement name="strength-box" class="stat-box" picking-mode="Ignore">
                     <ui:Label text="STR" class="stat-title" picking-mode="Ignore" />
@@ -25,18 +24,20 @@
                     <ui:Label text="SHD" class="stat-title" picking-mode="Ignore" />
                     <ui:Label name="shield-value" text="0" class="stat-value text-blue" picking-mode="Ignore" />
                 </ui:VisualElement>
-                
-                <ui:VisualElement name="handlimit-box" class="stat-box" picking-mode="Ignore">
-                    <ui:Label text="HAND" class="stat-title" picking-mode="Ignore" />
-                    <ui:Label name="handlimit-value" text="0/5" class="stat-value text-dark" picking-mode="Ignore" />
-                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
 
-                <ui:VisualElement name="deck-box" class="stat-box" picking-mode="Ignore">
-                    <ui:Label text="DECK" class="stat-title" picking-mode="Ignore" />
-                    <ui:Label name="deck-value" text="15" class="stat-value text-dark" picking-mode="Ignore" />
-                </ui:VisualElement>
+        <!-- Bottom Center: Deck & Hand Stats -->
+        <ui:VisualElement class="bottom-center-container" picking-mode="Ignore">
+            <ui:VisualElement name="deck-box" class="stat-box" picking-mode="Ignore">
+                <ui:Label text="DECK" class="stat-title" picking-mode="Ignore" />
+                <ui:Label name="deck-value" text="15" class="stat-value text-dark" picking-mode="Ignore" />
             </ui:VisualElement>
 
+            <ui:VisualElement name="handlimit-box" class="stat-box" picking-mode="Ignore">
+                <ui:Label text="HAND" class="stat-title" picking-mode="Ignore" />
+                <ui:Label name="handlimit-value" text="0/5" class="stat-value text-dark" picking-mode="Ignore" />
+            </ui:VisualElement>
         </ui:VisualElement>
 
         <!-- Bottom Right: End Turn Button -->

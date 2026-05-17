@@ -90,6 +90,14 @@
 .text-blue { color: #2980b9; }
 .text-dark { color: #4a3b2c; }
 
+/* Bottom Center Stats Container */
+.bottom-center-container {
+    position: absolute;
+    bottom: 250px;
+    align-self: center;
+    flex-direction: row;
+}
+
 /* End Turn Button Styles */
 .end-turn-container {
     position: absolute;
