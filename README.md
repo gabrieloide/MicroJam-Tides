@@ -65,29 +65,7 @@ This project was built following modular, professional, and scalable practices i
   * Smooth UI fading overlays.
 * **Audio Manager:** Centralized audio controller with dynamic music stopping/switching and clean Sound Effects (`SFX_Damage_Player`, `SFX_Victory`, `SFX_Damage_Boss`, etc.).
 
----
 
-## 🗓️ Development Logs (100% Completed! ✅)
-
-### 🗓️ DAY 1: The Brain (Core Gameplay) - COMPLETE ✅
-- [x] **Data Architecture:** Created `CardData` ScriptableObjects for all card archetypes.
-- [x] **Stat System:** Centralized `StatManager` for Strength/Shield degradation.
-- [x] **Infinite Draw/Discard Pile:** Implemented automatic deck re-shuffling.
-- [x] **Turn Loop:** Setup `TurnManager` state machine (Player Turn ➔ Boss Turn ➔ Clean Up).
-
-### 🗓️ DAY 2: The Feel (UI & DOTween Juice) - COMPLETE ✅
-- [x] **Visual Theme:** Integrated `Kenney Future` and `Kenney Pixel` fonts via automatic USS UI Toolkit styles.
-- [x] **Card UI Prefabs:** Rendered card values directly feeding from C# model.
-- [x] **Juice Integration:** Added camera shakes, elastic hovers, card drag-and-drop, and floating numbers.
-- [x] **Dynamic Boss AI:** Programmed rest mechanics to counter over-shielding.
-
-### 🗓️ DAY 3: The Diorama & Climax - COMPLETE ✅
-- [x] **3D dioramas:** Built the physical tabletop box scene on a dark wooden table.
-- [x] **Victory/Defeat Flow:** Added locked-input UI screens, audio transitions, and "Play Again" instant re-loads.
-- [x] **Climate Manager:** Programmed the 60% weather gate triggering rain/fog degradation synced to gameplay.
-- [x] **Polish & QA:** Squashed double-victory loops and Grave Attack bugs.
-
----
 
 ## 👥 Credits
 * **Development & Pixel Art:** [Gabrieloide](https://github.com/gabrieloide)
