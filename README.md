@@ -10,7 +10,7 @@
 
 ## 🎨 Cover Art (Handmade Pixel Art)
 
-![Ebbing Tides Cover](https://raw.githubusercontent.com/gabrieloide/MicroJam-Tides/master/Assets/EbbingTidesLogo.png)
+![Ebbing Tides Cover](cover.png)
 *(Cover art entirely illustrated and animated by Gabrieloide)*
 
 ---
