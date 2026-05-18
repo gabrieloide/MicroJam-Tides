@@ -1,60 +1,99 @@
-# 🌊 La Marea Menguante / Ebbing Tides
-**Game Jam Project (3 Days)**
+# 🌊 Ebbing Tides (La Marea Menguante)
 
-## 📋 Concepto General
-Un juego de combate táctico con cartas estilo "Boss Rush" (Diorama 3D). El jugador se enfrenta a una entidad marina en una carrera contra el agotamiento irreversible.
+[![Play on Itch.io](https://img.shields.io/badge/Play%20on-Itch.io-FA5C5C?style=for-the-badge&logo=itchdotio&logoColor=white)](https://gabrieloide.itch.io/) 
+[![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue?style=for-the-badge&logo=unity)](https://unity.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-* **Tema:** Tides (Mareas).
-* **Restricción:** "Strength is inversely proportional to progress" (La fuerza es inversamente proporcional al progreso).
-
-## ⚙️ Mecánicas Core
-
-### 1. El Sistema de Degradación Inversa (Stats)
-Empiezas con **10 puntos** en cada estadística. No hay curación. Si los tres llegan a 0, mueres.
-* **Fuerza (Fza):** Daño base de ataque.
-* **Escudo (Esc):** Defensa base.
-* **Mano (Mno):** Límite máximo de cartas a tener en la mano (Empieza en 5 fijas).
-
-**La Regla de Oro:** Cada carta ejecutada reduce permanentemente el stat asociado en -1 o -2.
-
-### 2. Reglas del Turno y Límites
-* **Límite de Juego:** El jugador solo puede jugar un **máximo de 3 cartas por turno**.
-* **Límite de Mano:** El tamaño máximo de la mano es variable según tu Stat.
-* **Sistema de Mazo:** Mazo infinito con pila de descarte. Al inicio de tu turno, mantienes las cartas no jugadas y solo robas las necesarias para rellenar tu mano hasta tu Límite actual.
-
-### 3. El Jefe
-* **Vida:** 100 PV.
-* **Patrón de IA Dinámico:**
-    1.  Ataques Ligeros (6) y Pesados (12) según cooldowns.
-    2.  Descansa estratégicamente (0) cuando detecta que el jugador tiene muchos escudos.
-    3.  Modo **Enraged (Enfurecido)** al bajar del 40% de vida.
-
-### 4. El Mazo (15 Cartas)
-* **Fuerza (5):** 4x Base (Daño = Fza), 1x Pesada (Daño = Fza + 5).
-* **Escudo (5):** 4x Base (Escudo = Esc), 1x Pesada (Escudo = Esc + 5).
-* **Utilidad (5):** Robo, Ciclado, Sacrificio.
+**Ebbing Tides** is a highly atmospheric, tactical 3D tabletop diorama card game developed in 3 days for the **MicroJam** game jam. You stand alone on a miniature sandy beach facing a giant, menacing sea entity in a race against your own physical exhaustion.
 
 ---
 
-## 🛠️ Roadmap de Desarrollo (Progreso Actual)
+## 🎨 Cover Art (Handmade Pixel Art)
 
-### 🗓️ DÍA 1: El Cerebro (Lógica Core) - COMPLETO ✅
-- [x] **Arquitectura de Datos:** Implementar `CardData` (ScriptableObjects) para los 3 arquetipos.
-- [x] **Stat System:** Crear `StatManager` centralizado para controlar vida, escudos y stats degradables.
-- [x] **Lógica de Mazo y Mano:** Sistema infinito con pila de descarte y re-barajado automático. Relleno táctico de la mano al terminar el turno.
-- [x] **Lógica de Cartas:** Resolución diferida (las cartas se ponen en la mesa y hacen efecto al pasar turno).
-- [x] **Game Loop:** Implementar `TurnManager` automático (Turno Jugador ➔ Turno Jefe ➔ Limpieza) y la Inteligencia Artificial del Boss.
+![Ebbing Tides Cover](https://raw.githubusercontent.com/gabrieloide/MicroJam-Tides/master/Assets/EbbingTidesLogo.png)
+*(Cover art entirely illustrated and animated by Gabrieloide)*
 
-### 🗓️ DÍA 2: La Experiencia (UI & Game Feel) - COMPLETO ✅
-- [x] **Gestor de Estilos:** Implementación de fuentes Pixel Art (`Kenney Future` y `Kenney Pixel`) automatizadas vía `ThemeManager`.
-- [x] **UI de Cartas:** Prefabs actualizables que leen los Stats en tiempo real.
-- [x] **UI de HUD:** Indicadores de vida, escudos activos, conteo del mazo/mano y visualizador de intención del jefe.
-- [x] **Input System:** Lógica de click para enviar la carta al tablero.
-- [x] **Animaciones (Juice):** Integración profunda de `DOTween`. (Hover elástico en cartas, punch scale en UI, Camera Shake al recibir daño, temblor del boss, animaciones de cartas 3D cayendo y resolviéndose).
+---
 
-### 🗓️ DÍA 3: Escenario y Pulido Final - PENDIENTE ⏳
-- [ ] **Diorama 3D:** Configurar la cámara fija, modelar/colocar el escenario base de la playa (roca/tablero en primer plano) e iluminación. Reemplazar los sprites placeholders.
-- [ ] **Condiciones de Victoria/Derrota:** Pantallas o cinemáticas al morir tú o el jefe, y un Menú Principal.
-- [ ] **Feedback Visual Adicional:** Añadir números flotantes de daño al impactar al jefe o al jugador (Opcional).
-- [ ] **Climate Manager:** Lógica que cambie gradualmente el entorno según el agotamiento general del jugador (cambio de color de luz, densidad de niebla y activación de partículas de lluvia al bajar los stats).
-- [ ] **Audio:** Añadir el bucle de sonido del mar de fondo y los SFX básicos al jugar cartas, UI e impactar golpes.
+## 📋 The Concept & Game Jam Constraint
+
+* **Theme:** Tides (Mareas)
+* **Jam Constraint:** *"Strength is inversely proportional to progress"* (La fuerza es inversamente proporcional al progreso).
+* **The Twist:** In Ebbing Tides, **your stats are your stamina**. Every card you play permanently drains your physical capabilities (Strength and Shield). If your health hits 0, you collapse on the beach and drown in the ebbing tides.
+
+---
+
+## ⚙️ Core Mechanics
+
+### 1. Stamina Degradation System
+You start strong with **10 points** in each stat, but every action leaves a permanent scar:
+* **Strength (STR):** Determines your attack card damage. Playing attacks permanently reduces your muscles by the card's cost (**-1 STR** or **-2 STR**).
+* **Shield (SHD):** Absorbs incoming heavy hits. Raising defensive barricades permanently cracks your posture by the card's cost (**-1 SHD** or **-2 SHD**).
+* **Utility & Health Costs (HP):** The hand size limit is fixed at 5. Drawing extra cards or cycling your hand doesn't degrade stats but drains your actual life directly by **-3 HP**.
+* **The Sacrifice Card:** Trade **15 HP** (Health) to temporarily rejuvenate your body, gaining **+3 STR** and **+3 SHD** permanently.
+
+### 2. Queued Card Resolution
+* Play up to **3 cards per turn** in any combination onto the 3D table.
+* Clicks are locked in. When you click **END TURN**, your queued cards resolve sequentially, followed by the boss's phase.
+
+### 3. Dynamic Boss AI & Shell Shield
+* The Devourer (**115 HP**) watches your actions!
+* If you stack too much active shield, the boss detects it, **rests** to preserve its strength, and enters a **Shell Armor stance** that mitigates incoming damage by **50%**.
+* At **<= 45 HP**, the boss enters **Enraged Mode**, unleashing devastating heavy strikes.
+
+---
+
+## 🌩️ Dynamic Weather & Fog System (Immersive Polish)
+
+The environment is a living representation of your stamina. 
+* The game starts on a **sunny, bright tropical beach**.
+* When either the Player's total stats or the Boss's health falls **below 60%**, the sky darkens, sun intensity fades, and **rain particles begin to fall**.
+* As you approach defeat or the boss enrages (<=45 HP), the scene morphs into an apocalyptic dark storm with heavy downpour and thunderous fog, creating an incredible aesthetic climax.
+
+---
+
+## 🛠️ Architecture & Tech Stack
+
+This project was built following modular, professional, and scalable practices in Unity:
+* **Unity 3D (URP):** Stylized Toon/Toon-shaded materials and physical diorama setup.
+* **Component-Based Stats:** Handled by `StatManager` and decoupled `LifeValue` scriptable objects to prevent scene coupling.
+* **Coroutines-Driven Card Queue:** `ResolvePlayedCardEffectsRoutine` handles sequential, timed DOTween resolutions of attacks, blocks, and draws.
+* **Tween-Powered Juiciness (DOTween):** 
+  * Elastic card hovers and drags.
+  * 3D card physical drops and shakes.
+  * Camera Shakes on taking damage.
+  * Smooth UI fading overlays.
+* **Audio Manager:** Centralized audio controller with dynamic music stopping/switching and clean Sound Effects (`SFX_Damage_Player`, `SFX_Victory`, `SFX_Damage_Boss`, etc.).
+
+---
+
+## 🗓️ Development Logs (100% Completed! ✅)
+
+### 🗓️ DAY 1: The Brain (Core Gameplay) - COMPLETE ✅
+- [x] **Data Architecture:** Created `CardData` ScriptableObjects for all card archetypes.
+- [x] **Stat System:** Centralized `StatManager` for Strength/Shield degradation.
+- [x] **Infinite Draw/Discard Pile:** Implemented automatic deck re-shuffling.
+- [x] **Turn Loop:** Setup `TurnManager` state machine (Player Turn ➔ Boss Turn ➔ Clean Up).
+
+### 🗓️ DAY 2: The Feel (UI & DOTween Juice) - COMPLETE ✅
+- [x] **Visual Theme:** Integrated `Kenney Future` and `Kenney Pixel` fonts via automatic USS UI Toolkit styles.
+- [x] **Card UI Prefabs:** Rendered card values directly feeding from C# model.
+- [x] **Juice Integration:** Added camera shakes, elastic hovers, card drag-and-drop, and floating numbers.
+- [x] **Dynamic Boss AI:** Programmed rest mechanics to counter over-shielding.
+
+### 🗓️ DAY 3: The Diorama & Climax - COMPLETE ✅
+- [x] **3D dioramas:** Built the physical tabletop box scene on a dark wooden table.
+- [x] **Victory/Defeat Flow:** Added locked-input UI screens, audio transitions, and "Play Again" instant re-loads.
+- [x] **Climate Manager:** Programmed the 60% weather gate triggering rain/fog degradation synced to gameplay.
+- [x] **Polish & QA:** Squashed double-victory loops and Grave Attack bugs.
+
+---
+
+## 👥 Credits
+* **Development & Pixel Art:** [Gabrieloide](https://github.com/gabrieloide)
+* **Animations:** DOTween Engine
+* **UI Fonts:** Kenney Retro Assets
+* **Music & SFX:** Audacity edited CC0 sounds
+
+---
+*Created with passion in 3 days for the MicroJam 2026. Stand tall against the tides!* 🦀🌊🐙
