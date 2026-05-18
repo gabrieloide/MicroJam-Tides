@@ -1,8 +1,10 @@
 # 🌊 Ebbing Tides (La Marea Menguante)
 
-[![Play on Itch.io](https://img.shields.io/badge/Play%20on-Itch.io-FA5C5C?style=for-the-badge&logo=itchdotio&logoColor=white)](https://gabrieloide.itch.io/) 
+[![Play on Itch.io](https://img.shields.io/badge/Play%20on-Itch.io-FA5C5C?style=for-the-badge&logo=itchdotio&logoColor=white)](https://virterex.itch.io/ebbing-tides) 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue?style=for-the-badge&logo=unity)](https://unity.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+🎮 **[Play Ebbing Tides on Itch.io!](https://virterex.itch.io/ebbing-tides)**
 
 **Ebbing Tides** is a highly atmospheric, tactical 3D tabletop diorama card game developed in 3 days for the **MicroJam** game jam. You stand alone on a miniature sandy beach facing a giant, menacing sea entity in a race against your own physical exhaustion.
 
